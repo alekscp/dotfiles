@@ -1,0 +1,95 @@
+" Vim-plug section
+call plug#begin()
+
+" My bundles
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-runner'
+Plug 'thoughtbot/vim-rspec'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'vim-ruby/vim-ruby'
+Plug 'ervandew/supertab'
+Plug 'kchmck/vim-coffee-script'
+
+" Colors
+Plug 'nanotech/jellybeans.vim'
+call plug#end()
+
+" Use the colorscheme from above
+colorscheme jellybeans
+
+filetype plugin indent on
+
+syntax on " Enable syntax highlighting
+
+augroup myfiletypes
+  " Clear old autocmds in group
+  autocmd!
+  " autoindent with two spaces, always expand tabs
+  autocmd FileType ruby,eruby,yaml setlocal ai sw=2 sts=2 et
+  autocmd FileType ruby,eruby,yaml setlocal path+=lib
+  autocmd FileType ruby,eruby,yaml setlocal colorcolumn=80
+  " Make ?s part of words
+  autocmd FileType ruby,eruby,yaml setlocal iskeyword+=?
+
+  " Clojure
+  autocmd FileType clojure setlocal colorcolumn=80
+  autocmd FileType clojure map <Leader>t :!lein test<cr>
+augroup END
+
+let g:ctrl_user_command='ag %s -l --hidden --nocolor -g ""'
+let g:ctrl_use_caching=0
+
+" Easy access to the start of the line
+nmap 0 ^
+
+" Want to set this before any other
+let mapleader = "\<space>"
+
+nmap <leader>vr :sp $MYVIMRC<cr>
+nmap <leader>so :source $MYVIMRC<cr>
+
+" Move up and down by visible lines if current line is wrapped
+nmap j gj
+nmap k gk
+
+" Map Ctrl-s to write the file
+nmap <C-s> :w<cr>
+imap <C-s> <esc>:w<cr>
+
+set number
+set relativenumber
+set numberwidth=3
+set hidden
+set backspace=indent,eol,start
+set history=500
+set laststatus=2
+set ruler
+set showcmd
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+" Required for vim-rspec
+let g:rspec_command = "call VtrSendCommand('rspec {spec}')"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
