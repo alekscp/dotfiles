@@ -88,6 +88,8 @@ set autoindent
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+set list
+set listchars=tab:!·,trail:·
 
 " Make it obvious where 80 characters is
 set textwidth=80
