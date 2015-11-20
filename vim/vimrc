@@ -26,10 +26,13 @@ Plug 'moll/vim-node'
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
+Plug 'chriskempson/vim-tomorrow-theme'
+Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 " Use the colorscheme from above
-colorscheme jellybeans 
+set background=dark
+colorscheme jellybeans
 
 filetype plugin indent on
 
@@ -41,7 +44,7 @@ augroup myfiletypes
   " autoindent with two spaces, always expand tabs
   autocmd FileType ruby,eruby,yaml setlocal ai sw=2 sts=2 et
   autocmd FileType ruby,eruby,yaml setlocal path+=lib
-  autocmd FileType ruby,eruby,yaml setlocal colorcolumn=80
+  autocmd FileType ruby,eruby,yaml setlocal textwidth=120
   " Make ?s part of words
   autocmd FileType ruby,eruby,yaml setlocal iskeyword+=?
 
@@ -77,6 +80,7 @@ imap <C-s> <esc>:w<cr>
 
 set number
 set relativenumber
+set cursorline
 set numberwidth=3
 set hidden
 set backspace=indent,eol,start
@@ -91,8 +95,8 @@ set softtabstop=2
 set list
 set listchars=tab:!·,trail:·
 
-" Make it obvious where 80 characters is
-set textwidth=80
+" Make it obvious where 120 characters is
+set textwidth=120
 set colorcolumn=+1
 
 " Have all swap files put in the same location
@@ -112,6 +116,15 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+" Make ctrl-p use Silver Searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 
 " Allow us to use Ctrl-s and Ctrl-q as keybinds
 silent !stty -ixon
