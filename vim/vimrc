@@ -28,10 +28,10 @@ Plug 'moll/vim-node'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'w0ng/vim-hybrid'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Use the colorscheme from above
-set background=dark
 colorscheme jellybeans
 
 filetype plugin indent on
