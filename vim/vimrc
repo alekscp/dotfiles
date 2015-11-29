@@ -6,6 +6,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-rake'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'christoomey/vim-tmux-navigator'
@@ -17,6 +19,10 @@ Plug 'ervandew/supertab'
 Plug 'kchmck/vim-coffee-script'
 Plug 'Townk/vim-autoclose'
 Plug 'alvan/vim-closetag'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
 
 " Angular
 Plug 'pangloss/vim-javascript'
@@ -29,6 +35,9 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'w0ng/vim-hybrid'
 Plug 'altercation/vim-colors-solarized'
+Plug 'chriskempson/base16-vim'
+Plug 'tomasr/molokai'
+Plug 'sjl/badwolf/'
 call plug#end()
 
 " Use the colorscheme from above
@@ -61,11 +70,6 @@ nmap 0 ^
 
 " Want to set this before any other
 let mapleader = "\<space>"
-
-" Make CtrlP use ag for listing the files. Way faster and no useless files.
-" " Without --hidden, it never finds .travis.yml since it starts with a dot
-let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
-let g:ctrlp_use_caching = 0
 
 nmap <leader>vr :sp $MYVIMRC<cr>
 nmap <leader>so :source $MYVIMRC<cr>
@@ -131,3 +135,6 @@ silent !stty -ixon
 
 " Restore default behaviour when leaving Vim.
 autocmd VimLeave * silent !stty ixon
+
+" Activate matchit.vim plugin
+runtime macros/matchit.vim
