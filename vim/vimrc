@@ -60,6 +60,9 @@ augroup myfiletypes
   " Clojure
   autocmd FileType clojure setlocal colorcolumn=80
   autocmd FileType clojure map <Leader>t :!lein test<cr>
+
+  " .conf files
+  autocmd BufEnter,BufRead *.conf setf dosini
 augroup END
 
 " filenames like *.xml, *.html, *.xhtml, ...
