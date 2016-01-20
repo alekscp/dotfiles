@@ -18,3 +18,5 @@
   safecrlf = true
 [push]
   default = simple
+[core]
+  editor = /usr/local/bin/vim
