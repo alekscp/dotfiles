@@ -1,0 +1,20 @@
+[user]
+  name = aclapinpepin
+  email = aclapinpepin@gmail.com
+[credential]
+  helper = cache --timeout=3600
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-fie -t
+  dump = cat-file -p
+  sla = log --oneline --decorate --graph --all
+  glog = log -E -i --grep
+[core]
+  autocrlf = input
+  safecrlf = true
+[push]
+  default = simple
