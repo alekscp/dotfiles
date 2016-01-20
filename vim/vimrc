@@ -17,6 +17,7 @@ Plug 'ervandew/supertab'
 Plug 'kchmck/vim-coffee-script'
 Plug 'Townk/vim-autoclose'
 Plug 'alvan/vim-closetag'
+Plug 'djoshea/vim-autoread'
 
 " Angular
 Plug 'pangloss/vim-javascript'
