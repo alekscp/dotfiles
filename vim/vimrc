@@ -86,6 +86,11 @@ nmap k gk
 nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
 
+" Configuration for netrw
+map <leader>k :Vex<cr>
+let g:netrw_liststyle=3
+let g:netrw_winsize   = 30
+
 set number
 set relativenumber
 set cursorline
