@@ -42,7 +42,7 @@ Plug 'sjl/badwolf/'
 call plug#end()
 
 " Use the colorscheme from above
-colorscheme jellybeans
+colorscheme hybrid
 
 filetype plugin indent on
 
@@ -89,7 +89,10 @@ imap <C-s> <esc>:w<cr>
 " Configuration for netrw
 map <leader>k :Vex<cr>
 let g:netrw_liststyle=3
-let g:netrw_winsize   = 30
+let g:netrw_winsize=30
+
+" Turn off highlighting from a search
+noremap <leader>h :nohlsearch<CR>
 
 set number
 set relativenumber
@@ -107,6 +110,8 @@ set shiftwidth=2
 set softtabstop=2
 set list
 set listchars=tab:!·,trail:·
+set incsearch
+set hlsearch
 
 " Make it obvious where 120 characters is
 set textwidth=120
