@@ -64,6 +64,9 @@ augroup myfiletypes
 
   " .conf files
   autocmd BufEnter,BufRead *.conf setf dosini
+
+  " Git commits
+  autocmd FileType gitcommit set textwidth=72
 augroup END
 
 " filenames like *.xml, *.html, *.xhtml, ...
