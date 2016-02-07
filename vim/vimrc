@@ -43,7 +43,12 @@ Plug 'sjl/badwolf/'
 call plug#end()
 
 " Use the colorscheme from above
-colorscheme jellybeans
+let s:uname = system("echo -n \"$(uname)\"")
+if !v:shell_error && s:uname == "Linux"
+  colorscheme jellybeans
+else
+  colorscheme hybrid
+endif
 
 filetype plugin indent on
 
