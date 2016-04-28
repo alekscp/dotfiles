@@ -25,12 +25,17 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdtree'
+Plug 'rking/ag.vim'
 
 " Angular
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'burnettk/vim-angular'
 Plug 'moll/vim-node'
+
+" Clojure
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
@@ -40,15 +45,12 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'chriskempson/base16-vim'
 Plug 'tomasr/molokai'
 Plug 'sjl/badwolf/'
+Plug 'marcopaganini/termschool-vim-theme'
 call plug#end()
 
 " Use the colorscheme from above
-let s:uname = system("echo -n \"$(uname)\"")
-if !v:shell_error && s:uname == "Linux"
-  colorscheme jellybeans
-else
-  colorscheme hybrid
-endif
+" colorscheme termschool
+colorscheme hybrid
 
 filetype plugin indent on
 
@@ -99,6 +101,12 @@ imap <C-s> <esc>:w<cr>
 " map <leader>k :Vex<cr>
 " let g:netrw_liststyle=3
 " let g:netrw_winsize=30
+
+" Insert a byebug
+map <leader>d orequire 'byebug'; byebug<ESC>
+
+" Insert a pry
+map <leader>p orequire 'pry'; binding.pry<ESC>
 
 " Configuration for NerdTree
 map <leader>k :NERDTreeToggle<CR>
@@ -155,6 +163,12 @@ if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" Access buffer with CtrlP plugin
+map <leader>b :CtrlPBuffer<CR>
+
+" ag.vim configuration
+let g:ag_working_path_mode="r"
 
 " Allow us to use Ctrl-s and Ctrl-q as keybinds
 silent !stty -ixon

@@ -1,5 +1,5 @@
 [user]
-  name = aclapinpepin
+  name = Aleksandre Clapin-Pepin
   email = aclapinpepin@gmail.com
 [credential]
   helper = cache --timeout=3600
@@ -20,3 +20,9 @@
   default = simple
 [core]
   editor = /usr/local/bin/vim
+[init]
+  templatedir = ~/.git_template
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
