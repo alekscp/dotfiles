@@ -10,10 +10,10 @@ Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-haml'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
-Plug 'thoughtbot/vim-rspec'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
 Plug 'kchmck/vim-coffee-script'
@@ -50,6 +50,7 @@ call plug#end()
 
 " Use the colorscheme from above
 " colorscheme termschool
+set background=dark
 colorscheme hybrid
 
 filetype plugin indent on
@@ -97,11 +98,6 @@ nmap k gk
 nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
 
-" Configuration for netrw
-" map <leader>k :Vex<cr>
-" let g:netrw_liststyle=3
-" let g:netrw_winsize=30
-
 " Insert a byebug
 map <leader>d orequire 'byebug'; byebug<ESC>
 
@@ -138,8 +134,13 @@ set textwidth=120
 set colorcolumn=+1
 
 " Have all swap files put in the same location
-set backupdir=~/.vim/backup/
-set directory=~/.vim/backup/
+if has('nvim')
+  set backupdir=~/config/.nvim/backup/
+  set directory=~/config/.nvim/backup/
+elseif
+  set backupdir=~/.vim/backup/
+  set directory=~/.vim/backup/
+endif
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -147,13 +148,6 @@ autocmd VimResized * :wincmd =
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>
-
-" Required for vim-rspec
-let g:rspec_command = "call VtrSendCommand('rspec {spec}')"
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
 
 " Make ctrl-p use Silver Searcher
 if executable('ag')
