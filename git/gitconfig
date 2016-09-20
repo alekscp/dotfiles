@@ -8,11 +8,14 @@
   ci = commit
   st = status
   br = branch
+  dc = diff --cached
+  aa = add .
   hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
   type = cat-fie -t
   dump = cat-file -p
   sla = log --oneline --decorate --graph --all
   glog = log -E -i --grep
+  gip = pull --rebase
 [core]
   autocrlf = input
   safecrlf = true
@@ -23,6 +26,6 @@
 [init]
   templatedir = ~/.git_template
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
