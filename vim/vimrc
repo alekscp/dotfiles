@@ -128,6 +128,9 @@ set list
 set listchars=tab:!·,trail:·
 set incsearch
 set hlsearch
+if has('nvim')
+  set mouse-=a
+endif
 
 " Make it obvious where 120 characters is
 set textwidth=120
@@ -165,7 +168,9 @@ map <leader>b :CtrlPBuffer<CR>
 let g:ag_working_path_mode="r"
 
 " Allow us to use Ctrl-s and Ctrl-q as keybinds
-silent !stty -ixon
+if !has('nvim')
+  silent !stty -ixon
+endif
 
 " Restore default behaviour when leaving Vim.
 autocmd VimLeave * silent !stty ixon
