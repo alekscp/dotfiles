@@ -16,6 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
+Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
@@ -112,6 +113,10 @@ map <leader>k :NERDTreeToggle<CR>
 
 " Turn off highlighting from a search
 noremap <leader>h :nohlsearch<CR>
+
+" Paste over words (or sentences, or paragraphs) with content of system clipboard
+" Note, this must be nmap, not nnnoremap
+nmap <leader>gr "*gr
 
 set number
 set relativenumber
