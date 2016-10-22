@@ -31,6 +31,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
 
+" Elixir
+Plug 'elixir-lang/vim-elixir'
+
 " Angular
 Plug 'pangloss/vim-javascript'
 Plug 'othree/javascript-libraries-syntax.vim'
