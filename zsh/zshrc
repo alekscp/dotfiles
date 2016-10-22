@@ -1,3 +1,7 @@
+command_exists () {
+  type "$1" &> /dev/null ;
+}
+
 # use nvim as the visual editor if installed; vim instead
 if command_exists nvim ; then
   export VISUAL="nvim"
@@ -24,10 +28,6 @@ alias l="ls -l"
 alias la="ls -la"
 
 function trash() { mv $1 ~/.Trash }
-
-command_exists () {
-  type "$1" &> /dev/null ;
-}
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
