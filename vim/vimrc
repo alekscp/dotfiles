@@ -16,6 +16,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
+Plug 'christoomey/vim-conflicted'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-ruby/vim-ruby'
