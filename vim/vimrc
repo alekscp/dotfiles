@@ -144,6 +144,12 @@ if has('nvim')
   set mouse-=a
 endif
 
+" Mappings for quick search & replace. Global set to default
+" Do a / search first, then leave pattern empty in :s// to use previous
+nnoremap <Leader>sub :%s///g<left><left>
+vnoremap <Leader>sub :s///g<left><left>
+nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
+
 " Make it obvious where 120 characters is
 set textwidth=120
 set colorcolumn=+1
@@ -183,6 +189,11 @@ let g:ag_working_path_mode="r"
 if !has('nvim')
   silent !stty -ixon
 endif
+
+"Enable indent folding
+set foldenable
+set foldmethod=indent
+set foldlevel=999
 
 " Restore default behaviour when leaving Vim.
 autocmd VimLeave * silent !stty ixon
