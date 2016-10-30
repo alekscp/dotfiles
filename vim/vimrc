@@ -179,9 +179,6 @@ map <leader>b :CtrlPBuffer<CR>
 " ag.vim configuration
 let g:ag_working_path_mode="r"
 
-" configuration for conflicted plugin
-set stl+=%{ConflictedVersion()}
-
 " Allow us to use Ctrl-s and Ctrl-q as keybinds
 if !has('nvim')
   silent !stty -ixon
