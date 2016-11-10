@@ -122,6 +122,8 @@ noremap <leader>h :nohlsearch<CR>
 " Note, this must be nmap, not nnnoremap
 nmap <leader>gr "*gr
 
+let $LANG = 'en'
+set langmenu=none
 set number
 set relativenumber
 set cursorline
@@ -189,3 +191,6 @@ autocmd VimLeave * silent !stty ixon
 
 " Activate matchit.vim plugin
 runtime macros/matchit.vim
+
+" Fix for Mac OS Sierra copy/paste
+set clipboard=unnamed
