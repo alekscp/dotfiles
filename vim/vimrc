@@ -142,9 +142,17 @@ set list
 set listchars=tab:!·,trail:·
 set incsearch
 set hlsearch
+set ignorecase
+set smartcase
 if has('nvim')
   set mouse-=a
 endif
+
+" Mappings for quick search & replace. Global set to default
+" Do a / search first, then leave pattern empty in :s// to use previous
+nnoremap <Leader>sub :%s///g<left><left>
+vnoremap <Leader>sub :s///g<left><left>
+nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 
 " Make it obvious where 120 characters is
 set textwidth=120
