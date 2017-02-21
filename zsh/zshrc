@@ -13,6 +13,8 @@ export EDITOR=$VISUAL
 
 export BUNDLER_EDITOR=$VISUAL
 
+export GOPATH=/Users/aleksandre/gocode
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/aleksandre/.oh-my-zsh
 
@@ -49,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-chruby ruby-2.2.2
+chruby ruby-2.3.0
 
 for zsh_source in $HOME/.zsh/config/*.zsh; do
   source $zsh_source

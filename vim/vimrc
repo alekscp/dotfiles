@@ -31,6 +31,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
+Plug 'floobits/floobits-neovim'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'

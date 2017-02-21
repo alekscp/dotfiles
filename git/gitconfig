@@ -30,15 +30,16 @@
   uncommit = reset --soft HEAD^
   unstage = reset
 [core]
-  autocrlf = input
+	autocrlf = false
   safecrlf = true
   editor = /usr/local/bin/nvim
+	excludesfile = ~/.gitignore
 [commit]
   template = ~/.gitmessage
 [push]
   default = upstream
 [github]
-  user = aclapinpepin
+  user = alekscp
 [init]
   templatedir = ~/.git_template
 [filter "lfs"]
