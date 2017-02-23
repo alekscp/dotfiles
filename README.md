@@ -6,6 +6,7 @@ This is a collection of my dotfiles.
 
 ##References
 * [Effortless Ctags with Git](http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html)
+* [vim-plug](https://github.com/junegunn/vim-plug)
 
 ##Inspiration
 * [Chris Toomey](https://github.com/christoomey/dotfiles)
