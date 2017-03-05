@@ -159,6 +159,13 @@ nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 set textwidth=120
 set colorcolumn=+1
 
+" Workaround for neovim for pane switching plugin
+if has('nvim')
+    nmap <BS> :<C-u>TmuxNavigateLeft<CR>
+else
+    nmap <C-h> <C-w>h
+endif
+
 " Have all swap files put in the same location
 if has('nvim')
   set backupdir=~/config/.nvim/backup/
