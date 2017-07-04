@@ -7,3 +7,5 @@
 .flooignore
 .byebug_history
 .idea
+.vagrant
+FLOOBITS_README.md
