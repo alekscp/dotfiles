@@ -58,3 +58,6 @@ for zsh_source in $HOME/.zsh/config/*.zsh; do
 done
 
 ensure_tmux_is_running
+
+
+source "/Users/aleksandre/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
