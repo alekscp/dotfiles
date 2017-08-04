@@ -20,6 +20,9 @@ export ZSH=/Users/aleksandre/.oh-my-zsh
 
 alias be="bundle exec"
 
+# exa alias (have to remove the la alias in ~/.oh_my_zsh/lib/directories.sh
+alias la="exa -la --git"
+
 # Docker aliases
 alias dm="docker-machine"
 alias dc="docker-compose"
@@ -27,7 +30,7 @@ alias dc="docker-compose"
 # Convenience aliases
 alias ls="ls -FG"
 alias l="ls -l"
-alias la="ls -la"
+# alias la="ls -la"
 
 function trash() { mv $1 ~/.Trash }
 
