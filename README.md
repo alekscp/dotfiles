@@ -1,16 +1,17 @@
-#Dotfiles
+# Dotfiles
 This is a collection of my dotfiles.
 
-##To-Do
+## Used libraries
+* [Exa](https://github.com/ogham/exa)
+
+## To-Do
 * Write script to automate setup of a new machine
 
 * Always run `brew install reattach-to-user-namespace`
 
-##References
+## References
 * [Effortless Ctags with Git](http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html)
 * [vim-plug](https://github.com/junegunn/vim-plug)
 
-##Inspiration
+## Inspiration
 * [Chris Toomey](https://github.com/christoomey/dotfiles)
-
-
