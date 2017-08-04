@@ -57,11 +57,12 @@ Plug 'marcopaganini/termschool-vim-theme'
 Plug 'lu-ren/SerialExperimentsLain'
 Plug 'nightsense/vim-crunchbang'
 Plug 'roosta/vim-srcery'
+Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Use the colorscheme from above
-set termguicolors
-colorscheme srcery
+set background=dark
+colorscheme solarized
 
 filetype plugin indent on
 
