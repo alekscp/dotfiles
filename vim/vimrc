@@ -118,6 +118,9 @@ map <leader>p orequire 'pry'; binding.pry<ESC>
 " Configuration for NerdTree
 map <leader>k :NERDTreeToggle<CR>
 
+" Git fugitive mappings
+map <leader>g :Gstatus<CR>
+
 " Turn off highlighting from a search
 noremap <leader>h :nohlsearch<CR>
 
