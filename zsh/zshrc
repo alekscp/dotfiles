@@ -64,3 +64,6 @@ ensure_tmux_is_running
 
 
 source "/Users/aleksandre/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+# added by travis gem
+[ -f /Users/aleksandre/.travis/travis.sh ] && source /Users/aleksandre/.travis/travis.sh
