@@ -20,7 +20,7 @@ export ZSH=/Users/aleksandre/.oh-my-zsh
 
 alias be="bundle exec"
 
-# exa alias (have to remove the la alias in ~/.oh_my_zsh/lib/directories.sh
+# exa alias (have to remove the la alias in ~/.oh_my_zsh/lib/directories.sh)
 alias la="exa -la --git"
 
 # Docker aliases
