@@ -13,10 +13,10 @@ export EDITOR=$VISUAL
 
 export BUNDLER_EDITOR=$VISUAL
 
-export GOPATH=/Users/aleksandre/gocode
+export GOPATH=/Users/$USER/gocode
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/aleksandre/.oh-my-zsh
+export ZSH=/Users/$USER/.oh-my-zsh
 
 alias be="bundle exec"
 
@@ -63,7 +63,7 @@ done
 ensure_tmux_is_running
 
 
-source "/Users/aleksandre/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+source "/Users/$USER/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # added by travis gem
-[ -f /Users/aleksandre/.travis/travis.sh ] && source /Users/aleksandre/.travis/travis.sh
+[ -f /Users/$USER/.travis/travis.sh ] && source /Users/$USER/.travis/travis.sh
