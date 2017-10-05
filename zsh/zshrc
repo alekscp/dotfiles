@@ -36,12 +36,18 @@ function trash() { mv $1 ~/.Trash }
 
 function conflicted { $EDITOR +Conflicted }
 
+#####
+# Spaceship theme tweaks
+# ###
+SPACESHIP_KUBECONTEXT_SHOW="${SPACESHIP_KUBECONTEXT_SHOW:=false}"
+SPACESHIP_BATTERY_SHOW=false
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each time that oh-my-zsh is loaded.
-ZSH_THEME="cjt"
+# ZSH_THEME="cjt"
 # ZSH_THEME="robbyrussell"
-# ZSH_THEME="spaceship"
+ZSH_THEME="spaceship"
 # ZSH_THEME="honukai"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -61,9 +67,6 @@ for zsh_source in $HOME/.zsh/config/*.zsh; do
 done
 
 ensure_tmux_is_running
-
-
-source "/Users/$USER/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # added by travis gem
 [ -f /Users/$USER/.travis/travis.sh ] && source /Users/$USER/.travis/travis.sh
