@@ -31,7 +31,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
-Plug 'floobits/floobits-neovim'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
