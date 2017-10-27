@@ -15,8 +15,6 @@ export BUNDLER_EDITOR=$VISUAL
 
 export GOPATH=/Users/$USER/gocode
 
-export HOMEBREW_GITHUB_API_TOKEN=025dc092ca1dd7d375da112bd6f648b46178bdfb
-
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/$USER/.oh-my-zsh
 
