@@ -11,7 +11,6 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-haml'
-Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'christoomey/vim-tmux-navigator'
@@ -31,6 +30,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
+
+" Manage sessions
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
 
 " Elixir
 Plug 'elixir-lang/vim-elixir'
