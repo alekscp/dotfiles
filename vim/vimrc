@@ -23,7 +23,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
 Plug 'kchmck/vim-coffee-script'
-Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'djoshea/vim-autoread'
 Plug 'kana/vim-textobj-user'
