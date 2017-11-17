@@ -20,9 +20,7 @@ Plug 'christoomey/vim-sort-motion'
 Plug 'christoomey/vim-conflicted'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'vim-ruby/vim-ruby'
 Plug 'ervandew/supertab'
-Plug 'kchmck/vim-coffee-script'
 Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'djoshea/vim-autoread'
@@ -35,11 +33,17 @@ Plug 'rking/ag.vim'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 
+" Ruby/Rails
+Plug 'vim-ruby/vim-ruby'
+Plug 'kchmck/vim-coffee-script'
+
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 
-" Angular
+" Javascript
 Plug 'pangloss/vim-javascript'
+
+" Angular
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'burnettk/vim-angular'
 Plug 'moll/vim-node'
