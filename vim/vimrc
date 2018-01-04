@@ -29,6 +29,9 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
 
+" Terraform
+Plug 'hashivim/vim-terraform'
+
 " Manage sessions
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
