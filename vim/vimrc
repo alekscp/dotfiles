@@ -17,24 +17,15 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
-Plug 'christoomey/vim-conflicted'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ervandew/supertab'
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
-Plug 'djoshea/vim-autoread'
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'scrooloose/nerdtree'
-Plug 'rking/ag.vim'
+Plug 'cohama/lexima.vim'
+Plug 'mileszs/ack.vim'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
-
-" Manage sessions
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
 
 " Ruby/Rails
 Plug 'vim-ruby/vim-ruby'
@@ -45,15 +36,6 @@ Plug 'elixir-lang/vim-elixir'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
-
-" Angular
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'burnettk/vim-angular'
-Plug 'moll/vim-node'
-
-" Clojure
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-clojure-static'
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
@@ -75,7 +57,8 @@ colorscheme solarized
 
 filetype plugin indent on
 
-syntax on " Enable syntax highlighting
+" Enable syntax highlighting
+syntax on
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -86,10 +69,6 @@ augroup myfiletypes
   autocmd FileType ruby,eruby,yaml setlocal textwidth=120
   " Make ?s part of words
   autocmd FileType ruby,eruby,yaml setlocal iskeyword+=?
-
-  " Clojure
-  autocmd FileType clojure setlocal colorcolumn=80
-  autocmd FileType clojure map <Leader>t :!lein test<cr>
 
   " .conf files
   autocmd BufEnter,BufRead *.conf setf dosini
@@ -133,19 +112,17 @@ map <leader>g :Gstatus<CR>
 " Turn off highlighting from a search
 noremap <leader>h :nohlsearch<CR>
 
-" Paste over words (or sentences, or paragraphs) with content of system clipboard
-" Note, this must be nmap, not nnnoremap
-nmap <leader>gr "*gr
-
 let $LANG = 'en'
 set langmenu=none
 set number
 set relativenumber
+set nobackup
+set nowritebackup
 set cursorline
 set numberwidth=3
 set hidden
 set backspace=indent,eol,start
-set history=500
+set history=50
 set laststatus=2
 set ruler
 set showcmd
@@ -159,9 +136,9 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-if has('nvim')
-  set mouse-=a
-endif
+
+" Force vim to use old regex engine to speed up scrolling
+set re=1
 
 " Mappings for quick search & replace. Global set to default
 " Do a / search first, then leave pattern empty in :s// to use previous
@@ -172,22 +149,6 @@ nnoremap <leader>wub :%s//<C-r><C-w>/g<cr>
 " Make it obvious where 120 characters is
 set textwidth=120
 set colorcolumn=+1
-
-" Workaround for neovim for pane switching plugin
-if has('nvim')
-    nmap <BS> :<C-u>TmuxNavigateLeft<CR>
-else
-    nmap <C-h> <C-w>h
-endif
-
-" Have all swap files put in the same location
-if has('nvim')
-  set backupdir=~/config/.nvim/backup/
-  set directory=~/config/.nvim/backup/
-elseif
-  set backupdir=~/.vim/backup/
-  set directory=~/.vim/backup/
-endif
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -208,19 +169,27 @@ endif
 " Access buffer with CtrlP plugin
 map <leader>b :CtrlPBuffer<CR>
 
-" ag.vim configuration
-let g:ag_working_path_mode="r"
-
-" Allow us to use Ctrl-s and Ctrl-q as keybinds
-if !has('nvim')
-  silent !stty -ixon
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
 endif
-
-" Restore default behaviour when leaving Vim.
-autocmd VimLeave * silent !stty ixon
-
-" Activate matchit.vim plugin
-runtime macros/matchit.vim
 
 " Fix for Mac OS Sierra copy/paste
 set clipboard=unnamed
+
+" ack.vim configuration
+nmap <LEADER>ck :Ack!<space>
+nnoremap <leader>cc :cclose<cr>
+
+function! s:VisualAck()
+  let temp = @"
+  normal! gvy
+  let escaped_pattern = escape(@", "[]().*")
+  let @" = temp
+  execute "Ack! '" . escaped_pattern . "'"
+endfunction
+
+nnoremap K :Ack! '<C-r><C-w>'<cr>
+vnoremap K :<C-u>call <sid>VisualAck()<cr>
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
