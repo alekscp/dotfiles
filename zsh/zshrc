@@ -1,72 +1,14 @@
-command_exists () {
-  type "$1" &> /dev/null ;
-}
+source ~/.zplug/init.zsh
 
-# use nvim as the visual editor if installed; vim instead
-if command_exists nvim ; then
-  export VISUAL="nvim"
-else
-  export VISUAL="vim"
-fi
+zplug 'mafredri/zsh-async', from:github
+zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
+zplug 'zsh-users/zsh-syntax-highlighting', defer:3
+zplug 'zsh-users/zsh-completions', defer:3
 
-export EDITOR=$VISUAL
+zplug load
 
-export BUNDLER_EDITOR=$VISUAL
-
-export GOPATH=/Users/$USER/gocode
-
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/$USER/.oh-my-zsh
-
-alias be="bundle exec"
-
-# exa alias (have to remove the la alias in ~/.oh_my_zsh/lib/directories.sh)
-alias la="exa -la --git"
-
-# Docker aliases
-alias dm="docker-machine"
-alias dc="docker-compose"
-
-# Convenience aliases
-alias ls="ls -FG"
-alias l="ls -l"
-# alias la="ls -la"
-
-function trash() { mv $1 ~/.Trash }
-
-function conflicted { $EDITOR +Conflicted }
-
-#####
-# Spaceship theme tweaks
-# ###
-SPACESHIP_KUBECONTEXT_SHOW="${SPACESHIP_KUBECONTEXT_SHOW:=false}"
-SPACESHIP_BATTERY_SHOW=false
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each time that oh-my-zsh is loaded.
-# ZSH_THEME="cjt"
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="spaceship"
-# ZSH_THEME="honukai"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-chruby ruby-2.3.0
-
-for zsh_source in $HOME/.zsh/config/*.zsh; do
+for zsh_source in $HOME/.zsh/configs/*.zsh; do
   source $zsh_source
 done
 
 ensure_tmux_is_running
-
-# added by travis gem
-[ -f /Users/$USER/.travis/travis.sh ] && source /Users/$USER/.travis/travis.sh
