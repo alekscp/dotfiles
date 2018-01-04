@@ -1,7 +1,3 @@
-export DISABLE_AUTO_TITLE="true"
-
-alias tls="tmux list-sessions"
-
 _not_inside_tmux() {
   [[ -z "$TMUX" ]]
 }
