@@ -23,6 +23,7 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'cohama/lexima.vim'
 Plug 'mileszs/ack.vim'
+Plug 'djoshea/vim-autoread'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
