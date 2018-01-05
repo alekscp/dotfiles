@@ -18,7 +18,7 @@ Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
 Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'cohama/lexima.vim'
