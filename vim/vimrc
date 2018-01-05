@@ -94,8 +94,8 @@ nmap j gj
 nmap k gk
 
 " Map Ctrl-s to write the file
-nmap <C-s> :w<cr>
-imap <C-s> <esc>:w<cr>
+nmap <C-S> :w<cr>
+imap <C-S> <esc>:w<cr>
 
 " Insert a byebug
 map <leader>d orequire 'byebug'; byebug<ESC>
@@ -140,6 +140,10 @@ set smartcase
 " Force vim to use old regex engine to speed up scrolling
 set re=1
 
+" Define backup directories
+set backupdir=~/.vim/backup/
+set directory=~/.vim/backup/
+
 " Mappings for quick search & replace. Global set to default
 " Do a / search first, then leave pattern empty in :s// to use previous
 nnoremap <Leader>sub :%s///g<left><left>
@@ -173,6 +177,12 @@ map <leader>b :CtrlPBuffer<CR>
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
+
+" Allow us to use Ctrl-s and Ctrl-q as keybinds
+silent !stty -ixon
+
+" Restore default behaviour when leaving Vim.
+autocmd VimLeave * silent !stty ixon
 
 " Fix for Mac OS Sierra copy/paste
 set clipboard=unnamed
