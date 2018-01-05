@@ -21,6 +21,7 @@ This is a collection of my dotfiles.
 * [vim-plug](https://github.com/junegunn/vim-plug)
 * [ack](https://beyondgrep.com/install/)
 * consider using [asdf](https://github.com/asdf-vm/asdf)
+* Increse key repeat manually [For Mac](https://ksearch.wordpress.com/2017/06/20/increase-the-key-repeat-rate-in-os-x-sierra/)
 
 ## References
 * [Effortless Ctags with Git](http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html)
