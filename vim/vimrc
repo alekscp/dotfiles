@@ -136,6 +136,7 @@ set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+set autoread
 
 " Force vim to use old regex engine to speed up scrolling
 set re=1
