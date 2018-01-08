@@ -3,7 +3,6 @@ This is a collection of my dotfiles.
 
 ## Used libraries
 * [Exa](https://github.com/ogham/exa)
-(have to remove the la alias in ~/.oh_my_zsh/lib/directories.zsh)
 
 ## To-Do
 * Write script to automate setup of a new machine
