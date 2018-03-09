@@ -53,7 +53,7 @@ Plug 'altercation/vim-colors-solarized'
 call plug#end()
 
 " Use the colorscheme from above
-set background=dark
+set background=light
 colorscheme solarized
 
 filetype plugin indent on
