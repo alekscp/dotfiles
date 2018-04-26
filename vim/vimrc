@@ -52,11 +52,12 @@ Plug 'lu-ren/SerialExperimentsLain'
 Plug 'nightsense/vim-crunchbang'
 Plug 'roosta/vim-srcery'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " Use the colorscheme from above
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
 
 filetype plugin indent on
 
