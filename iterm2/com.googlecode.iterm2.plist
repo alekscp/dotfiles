@@ -738,12 +738,14 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>1851 129 445 103 1280 -280 1920 1080 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>1930 218 620 392 1280 -280 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1517 265 796 473 1280 -280 1920 1057 </string>
+	<string>1572 235 918 401 1280 -280 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1280 -280 1803 1002 1280 -280 1920 1080 </string>
+	<string>1601 118 585 402 1280 -280 1920 1080 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1404,7 +1406,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Regular 12</string>
+			<string>Hack-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1455,8 +1457,12 @@
 			<array/>
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
+			<key>Thin Strokes</key>
+			<integer>4</integer>
 			<key>Transparency</key>
 			<real>0.0</real>
+			<key>Unicode Normalization</key>
+			<integer>0</integer>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -1541,7 +1547,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-03-26T09:13:15Z</date>
+	<date>2018-03-27T09:13:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>WordCharacters</key>
