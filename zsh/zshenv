@@ -1,3 +1,6 @@
+# Add anaconda3 to run Python stuff
+export PATH="$HOME/anaconda3/bin:$PATH"
+
 # Add homebrew binaries
 export PATH="/usr/local/bin:$PATH"
 
