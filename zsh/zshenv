@@ -1,8 +1,16 @@
-# Add anaconda3 to run Python stuff
-export PATH="$HOME/anaconda3/bin:$PATH"
-
 # Add homebrew binaries
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
-# Add my customs commands
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH:$MYSQL"
+
+# Android SDK specifics
+export ANDROID_SDK="$HOME/Library/Android/sdk"
+export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+
+# Go
+export GOPATH=$HOME/go
+
+# Elasticsearch
+export ES_HOME="/Applications/elasticsearch-6.5.4"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home"
+export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
