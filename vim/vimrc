@@ -1,3 +1,6 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 " Vim-plug section
 call plug#begin()
 
@@ -21,12 +24,15 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'junegunn/fzf'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
-Plug 'cohama/lexima.vim'
 Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
+Plug 'jiangmiao/auto-pairs'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
+
+" Solidity
+Plug 'tomlion/vim-solidity'
 
 " Ruby/Rails
 Plug 'vim-ruby/vim-ruby'
@@ -38,7 +44,10 @@ Plug 'elixir-lang/vim-elixir'
 " Javascript
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'othree/yajs.vim'
+Plug 'jelera/vim-javascript-syntax'
+
+" Syntax
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
@@ -56,6 +65,13 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 " Use the colorscheme from above
+
+" Gruvbox config
+" let g:gruvbox_contrast_dark = "soft"
+set termguicolors
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+
 set background=dark
 colorscheme gruvbox
 
@@ -105,12 +121,6 @@ nmap k gk
 nmap <C-S> :w<cr>
 imap <C-S> <esc>:w<cr>
 
-" Insert a byebug
-map <leader>d orequire 'byebug'; byebug<ESC>
-
-" Insert a pry
-map <leader>p orequire 'pry'; binding.pry<ESC>
-
 " Configuration for NerdTree
 map <leader>k :NERDTreeToggle<CR>
 
@@ -123,7 +133,6 @@ noremap <leader>h :nohlsearch<CR>
 let $LANG = 'en'
 set langmenu=none
 set number
-set relativenumber
 set nobackup
 set nowritebackup
 set cursorline
@@ -212,3 +221,18 @@ nnoremap K :Ack! '<C-r><C-w>'<cr>
 vnoremap K :<C-u>call <sid>VisualAck()<cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" vim-prettier config
+" Fire on save
+
+" max line length that prettier will wrap on
+" Prettier default: 80
+let g:prettier#config#print_width = 120
+
+" print spaces between brackets
+" Prettier default: true
+let g:prettier#config#bracket_spacing = 'true'
+
+" none|es5|all
+" Prettier default: none
+let g:prettier#config#trailing_comma = 'none'
