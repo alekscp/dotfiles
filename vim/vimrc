@@ -156,7 +156,6 @@ set hlsearch
 set ignorecase
 set smartcase
 set wildmenu
-set mouse=a
 
 " Force vim to use old regex engine to speed up scrolling
 set re=1
