@@ -1,5 +1,5 @@
 [user]
-  name = Aleksandre Clapin-Pepin
+  name = Aleks Clapin-Pepin
   email = aclapinpepin@gmail.com
 [credential]
   helper = cache --timeout=3600
