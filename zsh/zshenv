@@ -14,3 +14,12 @@ export GOPATH=$HOME/go
 export ES_HOME="/Applications/elasticsearch-6.5.4"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home"
 export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
+
+# Rust && Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# added by Anaconda3 5.1.0 installer
+export PATH="/anaconda3/bin:$PATH"
+
+# added by Anaconda3 5.1.0 installer
+export PATH="/Users/aclapinpepin/anaconda3/bin:$PATH"
