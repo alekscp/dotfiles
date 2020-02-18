@@ -3,10 +3,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 export PATH="$HOME/bin:$PATH:$MYSQL"
 
-# Android SDK specifics
-export ANDROID_SDK="$HOME/Library/Android/sdk"
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
-
 # Go
 export GOPATH=$HOME/go
 
