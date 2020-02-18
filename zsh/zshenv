@@ -13,9 +13,3 @@ export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
 
 # Rust && Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# added by Anaconda3 5.1.0 installer
-export PATH="/anaconda3/bin:$PATH"
-
-# added by Anaconda3 5.1.0 installer
-export PATH="/Users/aclapinpepin/anaconda3/bin:$PATH"
