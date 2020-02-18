@@ -48,6 +48,7 @@ Plug 'jelera/vim-javascript-syntax'
 
 " Syntax
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'cespare/vim-toml'
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
@@ -97,6 +98,9 @@ augroup myfiletypes
 
   " Git commits
   autocmd FileType gitcommit set textwidth=72
+
+  " Spelling check
+  autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us,fr
 augroup END
 
 " filenames like *.xml, *.html, *.xhtml, ...
@@ -156,6 +160,9 @@ set hlsearch
 set ignorecase
 set smartcase
 set wildmenu
+
+" Word completion using CTRL-N or CTRL-P (dependant on setlocal spell spelllang=en_us,fr)
+set complete+=kspell
 
 " Force vim to use old regex engine to speed up scrolling
 set re=1
