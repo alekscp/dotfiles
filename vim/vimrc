@@ -129,6 +129,7 @@ imap <C-S> <esc>:w<cr>
 
 " Configuration for NerdTree
 map <leader>k :NERDTreeToggle<CR>
+map <leader>f :NERDTreeFind<CR>
 
 " Git fugitive mappings
 map <leader>g :Gstatus<CR>
