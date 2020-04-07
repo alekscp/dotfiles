@@ -9,6 +9,6 @@ if [[ -e /usr/local/share/chruby ]]; then
   if [[ -f ~/.ruby-version ]]; then
     chruby $(cat ~/.ruby-version)
   else
-    chruby ruby-2.5.0
+    chruby ruby-2.7.0
   fi
 fi
