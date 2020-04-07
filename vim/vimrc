@@ -27,6 +27,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
 Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
@@ -69,14 +70,15 @@ call plug#end()
 " Use the colorscheme from above
 
 " Gruvbox config
-" let g:gruvbox_contrast_dark = "soft"
+let g:gruvbox_contrast_dark = "soft"
+
 set termguicolors
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 
 set background=light
-colorscheme PaperColor
-" colorscheme gruvbox
+" colorscheme PaperColor
+colorscheme gruvbox
 
 filetype plugin indent on
 
@@ -87,11 +89,11 @@ augroup myfiletypes
   " Clear old autocmds in group
   autocmd!
   " autoindent with two spaces, always expand tabs
-  autocmd FileType ruby,eruby,yaml setlocal ai sw=2 sts=2 et
-  autocmd FileType ruby,eruby,yaml setlocal path+=lib
-  autocmd FileType ruby,eruby,yaml setlocal textwidth=120
+  autocmd FileType ruby,eruby,yaml,yml setlocal ai sw=2 sts=2 et
+  autocmd FileType ruby,eruby,yaml,yml setlocal path+=lib
+  autocmd FileType ruby,eruby,yaml,yml setlocal textwidth=120
   " Make ?s part of words
-  autocmd FileType ruby,eruby,yaml setlocal iskeyword+=?
+  autocmd FileType ruby,eruby,yaml,yml setlocal iskeyword+=?
 
   " .conf files
   autocmd BufEnter,BufRead *.conf setf dosini
@@ -104,7 +106,8 @@ augroup myfiletypes
 augroup END
 
 " filenames like *.xml, *.html, *.xhtml, ...
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
+let g:closetag_filenames = "*.html,*.html.erb,*.xhtml,*.phtml,*.jsx"
+let g:closetag_filetypes = "html,erb,xwl,phtml"
 
 " vim-javascript & vim-jsx config
 let g:javascript_plugin_flow = 1
@@ -136,6 +139,9 @@ map <leader>g :Gstatus<CR>
 
 " Turn off highlighting from a search
 noremap <leader>h :nohlsearch<CR>
+
+" Ruby shortcuts
+map <leader>d orequire 'byebug'; byebug<ESC>
 
 let $LANG = 'en'
 set langmenu=none
