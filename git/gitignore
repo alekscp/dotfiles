@@ -3,6 +3,7 @@
 *.swp
 /tags
 .ctags
+.tags
 .floo
 .flooignore
 .byebug_history
