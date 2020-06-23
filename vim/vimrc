@@ -16,6 +16,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
@@ -50,6 +51,9 @@ Plug 'jelera/vim-javascript-syntax'
 " Syntax
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'cespare/vim-toml'
+
+" PlantUML
+Plug 'aklt/plantuml-syntax'
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
