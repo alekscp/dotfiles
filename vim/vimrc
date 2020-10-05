@@ -27,7 +27,8 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'rstacruz/vim-closer'
 Plug 'alvan/vim-closetag'
 
 " Terraform
@@ -60,12 +61,6 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'w0ng/vim-hybrid'
 Plug 'chriskempson/base16-vim'
-Plug 'tomasr/molokai'
-Plug 'sjl/badwolf/'
-Plug 'marcopaganini/termschool-vim-theme'
-Plug 'lu-ren/SerialExperimentsLain'
-Plug 'nightsense/vim-crunchbang'
-Plug 'roosta/vim-srcery'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'NLKNguyen/papercolor-theme'
@@ -80,7 +75,7 @@ set termguicolors
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 
-set background=light
+set background=dark
 " colorscheme PaperColor
 colorscheme gruvbox
 
