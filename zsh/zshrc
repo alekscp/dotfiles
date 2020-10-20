@@ -14,6 +14,3 @@ done
 ensure_tmux_is_running
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-
-# added by travis gem
-[ -f /Users/aclapinpepin/.travis/travis.sh ] && source /Users/aclapinpepin/.travis/travis.sh
