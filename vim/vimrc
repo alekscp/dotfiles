@@ -28,7 +28,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
 " Plug 'jiangmiao/auto-pairs'
-Plug 'rstacruz/vim-closer'
+" Plug 'rstacruz/vim-closer'
+Plug 'alekscp/vim-closer', { 'branch': 'Add-solidity-support' }
 Plug 'alvan/vim-closetag'
 
 " Terraform
@@ -36,6 +37,7 @@ Plug 'hashivim/vim-terraform'
 
 " Solidity
 Plug 'tomlion/vim-solidity'
+" Plug 'thesis/vim-solidity'
 
 " Ruby/Rails
 Plug 'vim-ruby/vim-ruby'
@@ -94,11 +96,17 @@ augroup myfiletypes
   " Make ?s part of words
   autocmd FileType ruby,eruby,yaml,yml setlocal iskeyword+=?
 
+  " .sol files
+  autocmd FileType solidity setlocal ai sw=4
+
   " .conf files
   autocmd BufEnter,BufRead *.conf setf dosini
 
   " Git commits
   autocmd FileType gitcommit set textwidth=72
+
+  " Markdown
+  autocmd FileType md set textwidth=120
 
   " Spelling check
   autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us,fr
@@ -237,11 +245,10 @@ vnoremap K :<C-u>call <sid>VisualAck()<cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+"""
 " vim-prettier config
-" Fire on save
-
+"""
 " max line length that prettier will wrap on
-" Prettier default: 80
 let g:prettier#config#print_width = 120
 
 " print spaces between brackets
@@ -251,3 +258,6 @@ let g:prettier#config#bracket_spacing = 'true'
 " none|es5|all
 " Prettier default: none
 let g:prettier#config#trailing_comma = 'none'
+
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#prose_wrap = 'preserve'

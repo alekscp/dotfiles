@@ -42,6 +42,7 @@
   user = alekscp
 [init]
   templatedir = ~/.git_template
+  defaultBranch = main
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
