@@ -113,8 +113,9 @@ augroup myfiletypes
 augroup END
 
 " filenames like *.xml, *.html, *.xhtml, ...
-let g:closetag_filenames = "*.html,*.html.erb,*.xhtml,*.phtml,*.jsx"
-let g:closetag_filetypes = "html,erb,xwl,phtml"
+let g:closetag_filenames = "*.html,*.html.erb,*.xhtml,*.phtml"
+let g:closetag_filetypes = "html,erb,xwl,phtml,javascript"
+let g:closetag_xhtml_filenames = "*.xhtml,*.jsx"
 
 " vim-javascript & vim-jsx config
 let g:javascript_plugin_flow = 1
