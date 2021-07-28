@@ -29,7 +29,7 @@ Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'rstacruz/vim-closer'
-Plug 'alekscp/vim-closer', { 'branch': 'Add-solidity-support' }
+Plug 'rstacruz/vim-closer'
 Plug 'alvan/vim-closetag'
 
 " Terraform
