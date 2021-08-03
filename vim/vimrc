@@ -85,8 +85,9 @@ colorscheme gruvbox
 
 filetype plugin indent on
 
-" Enable syntax highlighting
-syntax on
+" Syntax config
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart " Rescan the entire buffer for those files
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 augroup myfiletypes
   " Clear old autocmds in group
