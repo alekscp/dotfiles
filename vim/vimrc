@@ -46,10 +46,12 @@ Plug 'kchmck/vim-coffee-script'
 " Elixir
 Plug 'elixir-lang/vim-elixir'
 
-" Javascript
+" Javascript/TypeScript
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'jelera/vim-javascript-syntax'
+Plug 'leafgarland/typescript-vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
 
 " Syntax
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
