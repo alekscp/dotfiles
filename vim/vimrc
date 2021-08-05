@@ -21,7 +21,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
-Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'junegunn/fzf'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
@@ -162,9 +161,6 @@ map <leader>g :Gstatus<CR>
 " Turn off highlighting from a search
 noremap <leader>h :nohlsearch<CR>
 
-" Ruby shortcuts
-map <leader>d orequire 'byebug'; byebug<ESC>
-
 let $LANG = 'en'
 set langmenu=none
 set number
@@ -190,6 +186,30 @@ set hlsearch
 set ignorecase
 set smartcase
 set wildmenu
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> E :call <SID>show_documentation()<CR>
+
+" Use d to list CoC diagnostics
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+
+" Use s to listjCoC symbols
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
 " Word completion using CTRL-N or CTRL-P (dependant on setlocal spell spelllang=en_us,fr)
 set complete+=kspell
