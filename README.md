@@ -6,8 +6,12 @@ This is a collection of my dotfiles.
 
 ## To-Do
 * Write script to automate setup of a new machine
+** Handle all the symlinks creation
 
 * Always run `brew install reattach-to-user-namespace`
+
+### Nvim
+* `ln -s /Users/aclapinpepin/code/dotfiles/vim/init.vim /Users/aclapinpepin/.config/nvim/init.vim`
 
 ### After installing packages
 * Run Vim-plug in vim
