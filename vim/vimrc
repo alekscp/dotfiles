@@ -26,8 +26,6 @@ Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'rstacruz/vim-closer'
 Plug 'rstacruz/vim-closer'
 Plug 'alvan/vim-closetag'
 
@@ -53,7 +51,6 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 
 " Syntax
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'cespare/vim-toml'
 
 " PlantUML
@@ -89,7 +86,7 @@ set termguicolors
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 
-set background=dark
+" set background=dark
 " colorscheme PaperColor
 colorscheme gruvbox
 
@@ -280,20 +277,3 @@ nnoremap K :Ack! '<C-r><C-w>'<cr>
 vnoremap K :<C-u>call <sid>VisualAck()<cr>
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
-
-"""
-" vim-prettier config
-"""
-" max line length that prettier will wrap on
-let g:prettier#config#print_width = 120
-
-" print spaces between brackets
-" Prettier default: true
-let g:prettier#config#bracket_spacing = 'true'
-
-" none|es5|all
-" Prettier default: none
-let g:prettier#config#trailing_comma = 'none'
-
-let g:prettier#config#single_quote = 'false'
-let g:prettier#config#prose_wrap = 'preserve'
