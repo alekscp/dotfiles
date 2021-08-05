@@ -50,6 +50,9 @@ Plug 'leafgarland/typescript-vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 
+" GraphQL
+Plug 'jparise/vim-graphql'
+
 " Syntax
 Plug 'cespare/vim-toml'
 
