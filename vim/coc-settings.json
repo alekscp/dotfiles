@@ -1,4 +1,4 @@
 {
-  "eslint.autoFixOnSave": true,
+  "eslint.autoFixOnSave": false,
   "prettier.disableSuccessMessage": true
 }
