@@ -1,7 +1,7 @@
 source ~/.zplug/init.zsh
 
 zplug "mafredri/zsh-async", from:github
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zplug "sindresorhus/pure"
 zplug "zsh-users/zsh-syntax-highlighting", defer:0
 zplug 'zsh-users/zsh-completions', defer:0
 
