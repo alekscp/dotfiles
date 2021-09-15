@@ -24,3 +24,6 @@ if [ -f '/Users/aclapinpepin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ac
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc'; fi
+
+# gpg
+export GPG_TTY=$(tty)
