@@ -1,6 +1,7 @@
 [user]
   name = Aleks Clapin-Pepin
   email = aclapinpepin@gmail.com
+  signingkey = 540C7D708C3C0FB1
 [credential]
   helper = cache --timeout=3600
 [alias]
@@ -32,10 +33,11 @@
 [core]
   autocrlf = false
   safecrlf = true
-  editor = /usr/local/bin/vim
+  editor = /usr/local/bin/nvim
   excludesfile = ~/.gitignore
 [commit]
   template = ~/.gitmessage
+  gpgsign = true
 [push]
   default = upstream
 [github]

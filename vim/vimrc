@@ -21,14 +21,12 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'christoomey/vim-tmux-runner'
 Plug 'christoomey/vim-system-copy'
 Plug 'christoomey/vim-sort-motion'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'mileszs/ack.vim'
 Plug 'djoshea/vim-autoread'
-" Plug 'jiangmiao/auto-pairs'
-" Plug 'rstacruz/vim-closer'
 Plug 'rstacruz/vim-closer'
 Plug 'alvan/vim-closetag'
 
@@ -48,17 +46,29 @@ Plug 'elixir-lang/vim-elixir'
 
 " Javascript/TypeScript
 Plug 'pangloss/vim-javascript'
-Plug 'jelera/vim-javascript-syntax'
 Plug 'leafgarland/typescript-vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'peitalin/vim-jsx-typescript'
 
+" GraphQL
+Plug 'jparise/vim-graphql'
+
 " Syntax
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'cespare/vim-toml'
 
 " PlantUML
 Plug 'aklt/plantuml-syntax'
+
+" Coc
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 
 " Colors
 Plug 'nanotech/jellybeans.vim'
@@ -79,7 +89,7 @@ set termguicolors
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 
-set background=dark
+" set background=dark
 " colorscheme PaperColor
 colorscheme gruvbox
 
@@ -151,9 +161,6 @@ map <leader>g :Gstatus<CR>
 " Turn off highlighting from a search
 noremap <leader>h :nohlsearch<CR>
 
-" Ruby shortcuts
-map <leader>d orequire 'byebug'; byebug<ESC>
-
 let $LANG = 'en'
 set langmenu=none
 set number
@@ -179,6 +186,30 @@ set hlsearch
 set ignorecase
 set smartcase
 set wildmenu
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use E to show documentation in preview window.
+nnoremap <silent> E :call <SID>show_documentation()<CR>
+
+" Use d to list CoC diagnostics
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+
+" Use s to listjCoC symbols
+nnoremap <silent> <space>s :<C-u>CocList -I symbols<cr>
 
 " Word completion using CTRL-N or CTRL-P (dependant on setlocal spell spelllang=en_us,fr)
 set complete+=kspell
@@ -209,7 +240,7 @@ nnoremap <leader>= :wincmd =<cr>
 
 " Make ctrl-p use Silver Searcher
 if executable('ag')
-  " Use Ag over Grep
+  " Use ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
@@ -248,21 +279,19 @@ endfunction
 nnoremap K :Ack! '<C-r><C-w>'<cr>
 vnoremap K :<C-u>call <sid>VisualAck()<cr>
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --nocolor --column --path-to-ignore ~/.ignore'
 
-"""
-" vim-prettier config
-"""
-" max line length that prettier will wrap on
-let g:prettier#config#print_width = 120
+" Use K to show documentation in preview window.
+nnoremap <silent> <LEADER>D :call <SID>show_documentation()<CR>
 
-" print spaces between brackets
-" Prettier default: true
-let g:prettier#config#bracket_spacing = 'true'
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
-" none|es5|all
-" Prettier default: none
-let g:prettier#config#trailing_comma = 'none'
-
-let g:prettier#config#single_quote = 'false'
-let g:prettier#config#prose_wrap = 'preserve'
+nnoremap <silent> <LEADER>a :<C-u>CocAction<CR>
