@@ -33,7 +33,9 @@ require("packer").startup(function()
   -- Post-install/update hook with neovim command
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
  
-  use { "windwp/nvim-autopairs" }
+  -- Pairs/Tags closing
+  use "windwp/nvim-autopairs"
+  use "windwp/nvim-ts-autotag"
 
   use "neovim/nvim-lspconfig"
   use "hrsh7th/cmp-nvim-lsp"
@@ -62,6 +64,8 @@ require("packer").startup(function()
   }
 
   use "tomlion/vim-solidity"
+
+  use "f3fora/cmp-spell"
 end)
 
 ----------------------------- PLUGINS SETUP ------------------------------------
@@ -99,7 +103,10 @@ map("n", "<leader>n", ":NvimTreeFindFile<CR>")
 -- nvim-treesitter
 require"nvim-treesitter.configs".setup {
   ensure_installed = "maintained",
-  highlight = { enable = true },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = true,
+  },
   indent = { enable = true },
 }
 
@@ -132,8 +139,11 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "luasnip" },
+    { name = "spell" },
+    { name = "path" }
   }, {
-    { name = "buffer" }
+    { name = "buffer" },
+    { name = "cmdline" }
   })
 })
 
@@ -145,6 +155,13 @@ require("indent_blankline").setup {
 
 -- gitsigns.nvim
 require("gitsigns").setup()
+
+-- nvim-ts-autotag
+require"nvim-treesitter.configs".setup {
+  autotag = {
+    enable = true,
+  }
+}
 
 ----------------------------- LSP ----------------------------------------------
 local nvim_lsp = require("lspconfig")
@@ -209,13 +226,14 @@ opt.termguicolors = true
 opt.number = true                   -- Show line numbers
 opt.ignorecase = true
 opt.smartcase = true                -- Do not ignore case with capitals
-opt.smartindent = true              -- Insert indents automatically
 opt.autoindent = true
 opt.textwidth = width               -- Maximum width of text
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.softtabstop = 2
 opt.expandtab = true
+opt.smartindent = true              -- Insert indents automatically
+opt.spelllang = { "en_us", "fr" }
 g.gruvbox_contrast_dark = "soft"
 cmd[[colorscheme gruvbox]]
 cmd "set encoding=utf-8"
@@ -225,10 +243,11 @@ cmd "set colorcolumn=120"
 cmd "set nowritebackup"
 cmd "set shortmess+=c"
 cmd "set clipboard=unnamed"
-cmd "set updatetime=100"
+cmd "set updatetime=50"
 cmd "set noswapfile"
 cmd "set nobackup"
 cmd "set scrolloff=8"
+cmd "set termguicolors"
 cmd "au CursorHold,CursorHoldI,FocusGained,BufEnter * checktime"
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
