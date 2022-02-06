@@ -13,59 +13,65 @@ end
 ----------------------------- PLUGINS ------------------------------------------
 require("packer").startup(function()
   -- Packer can manage itself
-  use "wbthomason/packer.nvim"
+  if g.vscode then
+  else
+    use "wbthomason/packer.nvim"
 
-  use {
-    "kyazdani42/nvim-tree.lua",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function() require"nvim-tree".setup {} end
-  }
-  use "morhetz/gruvbox"
+    use {
+      "kyazdani42/nvim-tree.lua",
+      requires = "kyazdani42/nvim-web-devicons",
+      config = function() require"nvim-tree".setup {} end
+    }
+    use "morhetz/gruvbox"
 
-  use "christoomey/vim-tmux-navigator"
+    use "christoomey/vim-tmux-navigator"
 
-  use {
-  "nvim-telescope/telescope.nvim",
-  requires = { {"nvim-lua/plenary.nvim"} }
-  }
-  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+    use {
+      "nvim-telescope/telescope.nvim",
+      requires = { {"nvim-lua/plenary.nvim"} }
+    }
+    use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
-  -- Post-install/update hook with neovim command
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
- 
-  -- Pairs/Tags closing
-  use "windwp/nvim-autopairs"
-  use "windwp/nvim-ts-autotag"
+    -- Post-install/update hook with neovim command
+    use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
-  use "neovim/nvim-lspconfig"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-cmdline"
-  use "hrsh7th/nvim-cmp"
-  use "L3MON4D3/LuaSnip"
-  use "saadparwaiz1/cmp_luasnip"
+    -- Pairs/Tags closing
+    use "windwp/nvim-autopairs"
+    use "windwp/nvim-ts-autotag"
 
-  use "lukas-reineke/indent-blankline.nvim"
+    use "neovim/nvim-lspconfig"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/nvim-cmp"
+    use "L3MON4D3/LuaSnip"
 
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
+    -- Snippets
+    use "saadparwaiz1/cmp_luasnip"
+    use "rafamadriz/friendly-snippets"
 
-  use {
-    "lewis6991/gitsigns.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim"
-    },
-    tag = 'release' -- To use the latest release
-  }
+    use "lukas-reineke/indent-blankline.nvim"
 
-  use "tomlion/vim-solidity"
+    use {
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end
+    }
 
-  use "f3fora/cmp-spell"
+    use {
+      "lewis6991/gitsigns.nvim",
+      requires = {
+        "nvim-lua/plenary.nvim"
+      },
+      tag = 'release' -- To use the latest release
+    }
+
+    use "tomlion/vim-solidity"
+
+    use "f3fora/cmp-spell"
+  end
 end)
 
 ----------------------------- PLUGINS SETUP ------------------------------------
@@ -107,7 +113,10 @@ require"nvim-treesitter.configs".setup {
     enable = true,
     additional_vim_regex_highlighting = true,
   },
-  indent = { enable = true },
+  indent = {
+    enable = true,
+    disable = { "yaml" },
+  },
 }
 
 -- nvim-autopairs
@@ -143,9 +152,23 @@ cmp.setup({
     { name = "path" }
   }, {
     { name = "buffer" },
-    { name = "cmdline" }
   })
 })
+cmp.setup.cmdline("/", {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+-- LuaSnip
+require("luasnip.loaders.from_vscode").load()
 
 -- indent-blankline.nvim
 require("indent_blankline").setup {
@@ -264,4 +287,12 @@ map("n", "0", "^") -- Easy access to the start of the line
 map("n", "<C-S>", ":w<cr>")
 map("i", "<C-S>", "<esc>:w<cr>")
 map("i", "<C-c>", "<Esc>")
+
+-- formatting
+map("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+
+-- Visual Block --
+-- Move text up and down
+map("x", "J", ":move '>+1<CR>gv-gv")
+map("x", "K", ":move '<-2<CR>gv-gv")
 ----------------------------- COMMANDS -----------------------------------------
