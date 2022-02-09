@@ -6,9 +6,6 @@ export PATH="$HOME/bin:$PATH:$MYSQL"
 # Go
 export GOPATH=$HOME/go
 
-# Elasticsearch
-export ES_HOME="/Applications/elasticsearch-6.5.4"
-
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home"
 export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
