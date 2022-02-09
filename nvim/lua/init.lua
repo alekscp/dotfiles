@@ -126,8 +126,8 @@ require("nvim-autopairs").setup {
 }
 
 -- nvim-cmp
+local luasnip = require 'luasnip'
 local cmp = require"cmp"
-
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -144,6 +144,24 @@ cmp.setup({
       c = cmp.mapping.close(),
     }),
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Tab>"] = function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end,
+    ["<S-Tab>"] = function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
@@ -217,7 +235,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
-  buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 -- Use a loop to conveniently call "setup" on multiple servers and
@@ -287,9 +305,6 @@ map("n", "0", "^") -- Easy access to the start of the line
 map("n", "<C-S>", ":w<cr>")
 map("i", "<C-S>", "<esc>:w<cr>")
 map("i", "<C-c>", "<Esc>")
-
--- formatting
-map("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>")
 
 -- Visual Block --
 -- Move text up and down
