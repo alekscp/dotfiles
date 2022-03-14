@@ -14,6 +14,7 @@ end
 require("packer").startup(function()
   -- Packer can manage itself
   if g.vscode then
+    -- VSCode specific plugins
   else
     use "wbthomason/packer.nvim"
 
@@ -71,6 +72,8 @@ require("packer").startup(function()
     use "tomlion/vim-solidity"
 
     use "f3fora/cmp-spell"
+
+    use "kdheepak/lazygit.nvim"
   end
 end)
 
@@ -91,6 +94,7 @@ map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>")
 map("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>")
 map("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>")
 map("n", "<space>b", "<cmd>lua require('telescope.builtin').buffers()<cr>")
+map("n", "<space>d", "<cmd>lua require('telescope.builtin').diagnostics()<cr>")
 map("n", "<space>m", "<cmd>lua require('telescope.builtin').marks()<cr>")
 map("n", "<leader>k", "<cmd>lua require('telescope.builtin').grep_string{}<cr>")
 
@@ -204,6 +208,10 @@ require"nvim-treesitter.configs".setup {
   }
 }
 
+
+-- lazygit
+map("n", "<leader>g", ":LazyGit<cr>", {silent=true})
+
 ----------------------------- LSP ----------------------------------------------
 local nvim_lsp = require("lspconfig")
 
@@ -248,7 +256,8 @@ local servers = {
   "dotls",
   "eslint",
   "jsonls",
-  "solang",
+  "solidity_ls",
+  "sumneko_lua",
   "yamlls",
   "cssls",
 }
