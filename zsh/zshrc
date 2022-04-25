@@ -15,3 +15,5 @@ ensure_tmux_is_running
 
 alias vim="nvim"
 alias vi="nvim"
+
+export PATH="$PATH:/Users/aclapinpepin/.foundry/bin"

@@ -27,3 +27,6 @@ if [ -f '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Us
 
 # gpg
 export GPG_TTY=$(tty)
+
+# foundry https://github.com/foundry-rs/foundry
+export PATH="$PATH:/Users/aclapinpepin/.foundry/bin"

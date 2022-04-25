@@ -74,6 +74,8 @@ require("packer").startup(function()
     use "f3fora/cmp-spell"
 
     use "kdheepak/lazygit.nvim"
+
+    -- use "jose-elias-alvarez/null-ls.nvim"
   end
 end)
 
@@ -208,16 +210,25 @@ require"nvim-treesitter.configs".setup {
   }
 }
 
-
 -- lazygit
 map("n", "<leader>g", ":LazyGit<cr>", {silent=true})
+
+-- TODO: Debug - It seems to be conflicting with eslint loaded from LSP
+-- null-ls
+-- require("null-ls").setup({
+--   sources = {
+--     require("null-ls").builtins.diagnostics.eslint,
+--     require("null-ls").builtins.code_actions.eslint,
+--     require("null-ls").builtins.formatting.prettier
+--   },
+-- })
 
 ----------------------------- LSP ----------------------------------------------
 local nvim_lsp = require("lspconfig")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -260,6 +271,7 @@ local servers = {
   "sumneko_lua",
   "yamlls",
   "cssls",
+  "spectral",
 }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -284,6 +296,8 @@ opt.softtabstop = 2
 opt.expandtab = true
 opt.smartindent = true              -- Insert indents automatically
 opt.spelllang = { "en_us", "fr" }
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 g.gruvbox_contrast_dark = "soft"
 cmd[[colorscheme gruvbox]]
 cmd "set encoding=utf-8"
@@ -306,6 +320,8 @@ vim.o.completeopt = "menuone,noselect"
 api.nvim_command("autocmd VimResized * wincmd =")
 -- .sol files support
 api.nvim_command("autocmd FileType solidity setlocal ai sw=4 sts=2 et")
+-- Open all folds on file/buffer open
+api.nvim_command("autocmd BufReadPost,FileReadPost * normal zi")
 
 ----------------------------- MAPPINGS -----------------------------------------
 map("n", "<space>h", ":nohlsearch<CR>") -- turn off highlighting from a search
