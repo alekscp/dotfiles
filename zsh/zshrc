@@ -1,9 +1,11 @@
+# zmodload zsh/zprof
+
 source ~/.zplug/init.zsh
 
 zplug "sindresorhus/pure"
 zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-completions", defer:2
+# zplug "zsh-users/zsh-completions", defer:2
 
 zplug load
 
@@ -17,3 +19,5 @@ alias vim="nvim"
 alias vi="nvim"
 
 export PATH="$PATH:/Users/aclapinpepin/.foundry/bin"
+
+# zprof

@@ -313,7 +313,7 @@ cmd "set shell=/bin/bash" -- Performance boost
 cmd "au CursorHold,CursorHoldI,FocusGained,BufEnter * checktime"
 cmd "set completeopt=menu,menuone,noselect" -- From nvim-cmp conf
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
+-- vim.o.completeopt = "menuone,noselect"
 -- automatically rebalance windows on vim resize
 api.nvim_command("autocmd VimResized * wincmd =")
 -- .sol files support
