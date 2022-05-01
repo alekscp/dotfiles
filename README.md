@@ -3,6 +3,9 @@ This is a collection of my dotfiles.
 
 ## Used libraries
 * [Exa](https://github.com/ogham/exa)
+* [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+* [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+* [starship](https://starship.rs/)
 
 ## To-Do
 * Write script to automate setup of a new machine
@@ -17,8 +20,6 @@ This is a collection of my dotfiles.
 * Setup faster key repeat (MacOS) `defaults write -g KeyRepeat -int 1.1`
 
 ### Packages and stuff to consider in script
-* [zplug](https://github.com/zplug/zplug) | Install manually and not from Homebrew so that you can manage the instalation
-  directory
 * Exa (see above)
 * [ack](https://beyondgrep.com/install/)
 * consider using [asdf](https://github.com/asdf-vm/asdf)

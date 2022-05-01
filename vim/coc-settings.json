@@ -1,5 +1,0 @@
-{
-  "eslint.autoFixOnSave": false,
-  "prettier.disableSuccessMessage": true,
-  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
-}

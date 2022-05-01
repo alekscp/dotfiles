@@ -1,23 +1,15 @@
-# zmodload zsh/zprof
-
-source ~/.zplug/init.zsh
-
-zplug "sindresorhus/pure"
-zplug "mafredri/zsh-async"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-# zplug "zsh-users/zsh-completions", defer:2
-
-zplug load
-
 for zsh_source in $HOME/.zsh/configs/*.zsh; do
   source $zsh_source
 done
 
-ensure_tmux_is_running
-
 alias vim="nvim"
 alias vi="nvim"
 
-export PATH="$PATH:/Users/aclapinpepin/.foundry/bin"
+# Fish-like autosuggestions for zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# zprof
+# Fish shell like syntax highlighting for zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Evoke starship prompt (must be at the end of .zshrc)
+eval "$(starship init zsh)"
