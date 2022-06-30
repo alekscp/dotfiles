@@ -684,7 +684,7 @@ shell:
 #working_directory: None
 
 # Send ESC (\x1b) before characters when alt is pressed.
-#alt_send_esc: true
+alt_send_esc: false
 
 mouse:
   # Click settings
@@ -972,7 +972,11 @@ mouse:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # in the order they were defined in.
-#key_bindings:
+key_bindings:
+  # https://github.com/alacritty/alacritty/issues/93#issuecomment-334790547
+  - { key: F,         mods: Alt,           chars: "\x1bf"                       }
+  - { key: B,         mods: Alt,           chars: "\x1bb"                       }
+  # - { key: LBracket,  mods: Alt,           chars: "\x1b["                       }
   #- { key: Paste,                                       action: Paste          }
   #- { key: Copy,                                        action: Copy           }
   #- { key: L,         mods: Control,                    action: ClearLogNotice }

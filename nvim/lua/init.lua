@@ -77,6 +77,8 @@ require("packer").startup(function()
 
     use "arcticicestudio/nord-vim"
 
+    use "github/copilot.vim"
+
     -- use "jose-elias-alvarez/null-ls.nvim"
   end
 end)
@@ -333,6 +335,10 @@ api.nvim_command("autocmd BufReadPost,FileReadPost * normal zi")
 ----------------------------- MAPPINGS -----------------------------------------
 map("n", "<space>h", ":nohlsearch<CR>") -- turn off highlighting from a search
 map("n", "0", "^") -- Easy access to the start of the line
+
+-- Copilot
+map("i", "‘", "<Plug>(copilot-next)")
+map("i", "“", "<Plug>(copilot-previous)")
 
 -- Write the file
 map("n", "<C-S>", ":w<cr>")
