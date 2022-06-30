@@ -1,0 +1,702 @@
+#compdef forge
+
+autoload -U is-at-least
+
+_forge() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+":: :_forge_commands" \
+"*::: :->forge" \
+&& ret=0
+    case $state in
+    (forge)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:forge-command-$line[1]:"
+        case $line[1] in
+            (test)
+_arguments "${_arguments_options[@]}" \
+'-m+[Only run test functions matching the specified regex pattern]:PATTERN: ' \
+'--match=[Only run test functions matching the specified regex pattern]:PATTERN: ' \
+'(-m --match)--match-test=[Only run test functions matching the specified regex pattern]:TEST_PATTERN: ' \
+'(-m --match)--no-match-test=[Only run test functions that do not match the specified regex pattern]:TEST_PATTERN_INVERSE: ' \
+'(-m --match)--match-contract=[Only run tests in contracts matching the specified regex pattern]:CONTRACT_PATTERN: ' \
+'(-m --match)--no-match-contract=[Only run tests in contracts that do not match the specified regex pattern]:CONTRACT_PATTERN_INVERSE: ' \
+'(-m --match)--match-path=[Only run tests in source files matching the specified glob pattern]:PATH_PATTERN: ' \
+'(-m --match)--no-match-path=[Only run tests in source files that do not match the specified glob pattern]:no-match-path: ' \
+'--debug=[Run a test in the debugger]:TEST FUNCTION: ' \
+'-f+[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-url=[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-block-number=[Fetch state from a specific block number over a remote endpoint]:FORK_BLOCK_NUMBER: ' \
+'--initial-balance=[The initial balance of deployed test contracts]:INITIAL_BALANCE: ' \
+'--sender=[The address which will be executing tests]:SENDER: ' \
+'--gas-limit=[The block gas limit]:GAS_LIMIT: ' \
+'--chain-id=[The chain ID]:CHAIN_ID: ' \
+'--gas-price=[The gas price]:GAS_PRICE: ' \
+'--block-base-fee-per-gas=[The base fee in a block]:BLOCK_BASE_FEE_PER_GAS: ' \
+'--tx-origin=[The transaction origin]:TX_ORIGIN: ' \
+'--block-coinbase=[The coinbase of the block]:BLOCK_COINBASE: ' \
+'--block-timestamp=[The timestamp of the block]:BLOCK_TIMESTAMP: ' \
+'--block-number=[The block number]:BLOCK_NUMBER: ' \
+'--block-difficulty=[The block difficulty]:BLOCK_DIFFICULTY: ' \
+'--block-gas-limit=[The block gas limit]:BLOCK_GAS_LIMIT: ' \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'-d+[File update debounce delay]:DELAY: ' \
+'--delay=[File update debounce delay]:DELAY: ' \
+'-w+[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--watch=[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--gas-report[Print a gas report]' \
+'--allow-failure[Exit with code 0 even if a test fails]' \
+'-j[Output test results in JSON format]' \
+'--json[Output test results in JSON format]' \
+'--no-storage-caching[Explicitly disables the use of RPC caching]' \
+'--ffi[Enables the FFI cheatcode.]' \
+'*-v[Verbosity of the EVM.]' \
+'*--verbosity[Verbosity of the EVM.]' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'--no-restart[Do not restart the command while it'\''s still running.]' \
+'--run-all[Explicitly re-run all tests when a change is made]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(bind)
+_arguments "${_arguments_options[@]}" \
+'--root=[The project'\''s root path. By default, this is the root directory of the current Git repository or the current working directory if it is not part of a Git repository]:ROOT:_files -/' \
+'-b+[Path to where the contract artifacts are stored]:BINDINGS:_files -/' \
+'--bindings-path=[Path to where the contract artifacts are stored]:BINDINGS:_files -/' \
+'--crate-name=[The name of the Rust crate to generate. This should be a valid crates.io crate name. However, it is not currently validated by this command.]:CRATE_NAME: ' \
+'--crate-version=[The version of the Rust crate to generate. This should be a standard semver version string. However, it is not currently validated by this command.]:CRATE_VERSION: ' \
+'--module[Generate the bindings as a module instead of a crate]' \
+'--overwrite[Overwrite existing generated bindings. By default, the command will check that the bindings are correct, and then exit. If --overwrite is passed, it will instead delete and overwrite the bindings.]' \
+'--single-file[Generate bindings as a single file.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(build)
+_arguments "${_arguments_options[@]}" \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'-d+[File update debounce delay]:DELAY: ' \
+'--delay=[File update debounce delay]:DELAY: ' \
+'-w+[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--watch=[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'--names[Print compiled contract names.]' \
+'--sizes[Print compiled contract sizes.]' \
+'--no-restart[Do not restart the command while it'\''s still running.]' \
+'--run-all[Explicitly re-run all tests when a change is made]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(run)
+_arguments "${_arguments_options[@]}" \
+'-t+[The name of the contract you want to run]:CONTRACT_NAME: ' \
+'--target-contract=[The name of the contract you want to run]:CONTRACT_NAME: ' \
+'-s+[The signature of the function you want to call in the contract, or raw calldata]:SIGNATURE: ' \
+'--sig=[The signature of the function you want to call in the contract, or raw calldata]:SIGNATURE: ' \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'-f+[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-url=[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-block-number=[Fetch state from a specific block number over a remote endpoint]:FORK_BLOCK_NUMBER: ' \
+'--initial-balance=[The initial balance of deployed test contracts]:INITIAL_BALANCE: ' \
+'--sender=[The address which will be executing tests]:SENDER: ' \
+'--gas-limit=[The block gas limit]:GAS_LIMIT: ' \
+'--chain-id=[The chain ID]:CHAIN_ID: ' \
+'--gas-price=[The gas price]:GAS_PRICE: ' \
+'--block-base-fee-per-gas=[The base fee in a block]:BLOCK_BASE_FEE_PER_GAS: ' \
+'--tx-origin=[The transaction origin]:TX_ORIGIN: ' \
+'--block-coinbase=[The coinbase of the block]:BLOCK_COINBASE: ' \
+'--block-timestamp=[The timestamp of the block]:BLOCK_TIMESTAMP: ' \
+'--block-number=[The block number]:BLOCK_NUMBER: ' \
+'--block-difficulty=[The block difficulty]:BLOCK_DIFFICULTY: ' \
+'--block-gas-limit=[The block gas limit]:BLOCK_GAS_LIMIT: ' \
+'--debug[Open the script in the debugger]' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'--no-storage-caching[Explicitly disables the use of RPC caching]' \
+'--ffi[Enables the FFI cheatcode.]' \
+'*-v[Verbosity of the EVM.]' \
+'*--verbosity[Verbosity of the EVM.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':path -- The path of the contract to run:_files' \
+'*::args -- Arguments to pass to the script function:' \
+&& ret=0
+;;
+(update)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::lib -- The path to the dependency you want to update.:_files -/' \
+&& ret=0
+;;
+(install)
+_arguments "${_arguments_options[@]}" \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'--no-git[Install without adding the dependency as a submodule.]' \
+'--no-commit[Do not create a commit.]' \
+'-q[Do not print any messages.]' \
+'--quiet[Do not print any messages.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::dependencies -- The dependencies to install:' \
+&& ret=0
+;;
+(remove)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::dependencies -- The path to the dependency you want to remove.:' \
+&& ret=0
+;;
+(remappings)
+_arguments "${_arguments_options[@]}" \
+'--root=[The project'\''s root path. Defaults to the current working directory.]:ROOT:_files -/' \
+'*--lib-path=[The path to the library folder.]:LIB_PATH:_files -/' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(verify-contract)
+_arguments "${_arguments_options[@]}" \
+'--constructor-args=[the encoded constructor arguments]:CONSTRUCTOR_ARGS: ' \
+'--compiler-version=[The compiler version used to build the smart contract.]:COMPILER_VERSION: ' \
+'--num-of-optimizations=[The number of optimization runs used to build the smart contract.]:NUM_OF_OPTIMIZATIONS: ' \
+'--chain=[The chain ID the contract is deployed to.]:CHAIN: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'--flatten[Flatten the source code before verifying.]' \
+'-f[Do not compile the flattened smart contract before verifying (if --flatten is passed).]' \
+'--force[Do not compile the flattened smart contract before verifying (if --flatten is passed).]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- The address of the contract to verify.:' \
+':contract -- The contract identifier in the form `<path>\:<contractname>`.:' \
+':etherscan-key -- Your Etherscan API key.:' \
+&& ret=0
+;;
+(verify-check)
+_arguments "${_arguments_options[@]}" \
+'--chain=[The chain ID the contract is deployed to.]:CHAIN: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':guid -- The verification GUID.:' \
+':etherscan-key -- Your Etherscan API key.:' \
+&& ret=0
+;;
+(create)
+_arguments "${_arguments_options[@]}" \
+'(--constructor-args-path)*--constructor-args=[The constructor arguments.]:constructor_args: ' \
+'(--constructor-args)--constructor-args-path=[The path to a file containing the constructor arguments.]:constructor_args_path:_files' \
+'--gas-price=[Gas price for legacy transactions, or max fee per gas for EIP1559 transactions.]:GAS_PRICE: ' \
+'--gas-limit=[Gas limit for the transaction.]:GAS_LIMIT: ' \
+'--priority-fee=[Gas priority fee for EIP1559 transactions.]:PRIORITY_FEE: ' \
+'--value=[Ether to send in the transaction.]:VALUE: ' \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'--rpc-url=[The RPC endpoint.]:RPC_URL: ' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'--chain=[]:CHAIN: ' \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--legacy[Send a legacy transaction instead of an EIP1559 transaction.]' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'--flashbots[Use the flashbots RPC URL (https://rpc.flashbots.net)]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'--json[Print the deployment information as JSON.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':contract -- The contract identifier in the form `<path>\:<contractname>`.:' \
+&& ret=0
+;;
+(init)
+_arguments "${_arguments_options[@]}" \
+'-t+[The template to start from.]:TEMPLATE: ' \
+'--template=[The template to start from.]:TEMPLATE: ' \
+'(-t --template)--no-git[Do not create a git repository.]' \
+'(-t --template)--no-commit[Do not create an initial commit.]' \
+'-q[Do not print any messages.]' \
+'--quiet[Do not print any messages.]' \
+'(-t --template)--offline[Do not install dependencies from the network.]' \
+'(-t --template)--force[Create the project even if the specified root directory is not empty.]' \
+'(-t --template)--vscode[Create a .vscode/settings.json file with Solidity settings, and generate a remappings.txt file.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::root -- The root directory of the new project. Defaults to the current working directory.:_files -/' \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':shell:(bash elvish fish powershell zsh)' \
+&& ret=0
+;;
+(clean)
+_arguments "${_arguments_options[@]}" \
+'--root=[The project'\''s root path. Defaults to the current working directory.]:ROOT:_files -/' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(snapshot)
+_arguments "${_arguments_options[@]}" \
+'-m+[Only run test functions matching the specified regex pattern]:PATTERN: ' \
+'--match=[Only run test functions matching the specified regex pattern]:PATTERN: ' \
+'(-m --match)--match-test=[Only run test functions matching the specified regex pattern]:TEST_PATTERN: ' \
+'(-m --match)--no-match-test=[Only run test functions that do not match the specified regex pattern]:TEST_PATTERN_INVERSE: ' \
+'(-m --match)--match-contract=[Only run tests in contracts matching the specified regex pattern]:CONTRACT_PATTERN: ' \
+'(-m --match)--no-match-contract=[Only run tests in contracts that do not match the specified regex pattern]:CONTRACT_PATTERN_INVERSE: ' \
+'(-m --match)--match-path=[Only run tests in source files matching the specified glob pattern]:PATH_PATTERN: ' \
+'(-m --match)--no-match-path=[Only run tests in source files that do not match the specified glob pattern]:no-match-path: ' \
+'--debug=[Run a test in the debugger]:TEST FUNCTION: ' \
+'-f+[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-url=[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-block-number=[Fetch state from a specific block number over a remote endpoint]:FORK_BLOCK_NUMBER: ' \
+'--initial-balance=[The initial balance of deployed test contracts]:INITIAL_BALANCE: ' \
+'--sender=[The address which will be executing tests]:SENDER: ' \
+'--gas-limit=[The block gas limit]:GAS_LIMIT: ' \
+'--chain-id=[The chain ID]:CHAIN_ID: ' \
+'--gas-price=[The gas price]:GAS_PRICE: ' \
+'--block-base-fee-per-gas=[The base fee in a block]:BLOCK_BASE_FEE_PER_GAS: ' \
+'--tx-origin=[The transaction origin]:TX_ORIGIN: ' \
+'--block-coinbase=[The coinbase of the block]:BLOCK_COINBASE: ' \
+'--block-timestamp=[The timestamp of the block]:BLOCK_TIMESTAMP: ' \
+'--block-number=[The block number]:BLOCK_NUMBER: ' \
+'--block-difficulty=[The block difficulty]:BLOCK_DIFFICULTY: ' \
+'--block-gas-limit=[The block gas limit]:BLOCK_GAS_LIMIT: ' \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'-d+[File update debounce delay]:DELAY: ' \
+'--delay=[File update debounce delay]:DELAY: ' \
+'-w+[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--watch=[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--min=[Only include tests that used more gas that the given amount.]:MIN: ' \
+'--max=[Only include tests that used less gas that the given amount.]:MAX: ' \
+'(--snap)--diff=[Output a diff against a pre-existing snapshot]:SNAPSHOT_FILE:_files' \
+'(--diff)--check=[Compare against a pre-existing snapshot, exiting with code 1 if they do not match]:SNAPSHOT_FILE:_files' \
+'--format=[How to format the output.]:FORMAT: ' \
+'--snap=[Output file for the snapshot.]:SNAPSHOT_FILE: ' \
+'--gas-report[Print a gas report]' \
+'--allow-failure[Exit with code 0 even if a test fails]' \
+'-j[Output test results in JSON format]' \
+'--json[Output test results in JSON format]' \
+'--no-storage-caching[Explicitly disables the use of RPC caching]' \
+'--ffi[Enables the FFI cheatcode.]' \
+'*-v[Verbosity of the EVM.]' \
+'*--verbosity[Verbosity of the EVM.]' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'--no-restart[Do not restart the command while it'\''s still running.]' \
+'--run-all[Explicitly re-run all tests when a change is made]' \
+'--asc[Sort results by gas used (ascending).]' \
+'(--asc)--desc[Sort results by gas used (descending).]' \
+'--include-fuzz-tests[Include the mean and median gas use of fuzz tests in the snapshot]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(config)
+_arguments "${_arguments_options[@]}" \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'-d+[File update debounce delay]:DELAY: ' \
+'--delay=[File update debounce delay]:DELAY: ' \
+'-w+[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'--watch=[Watches the given files or folders for changes. If no paths are specified, the source directory of the project is watched.]:PATH: ' \
+'-f+[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-url=[Fetch state over a remote endpoint instead of starting from an empty state]:FORK_URL: ' \
+'--fork-block-number=[Fetch state from a specific block number over a remote endpoint]:FORK_BLOCK_NUMBER: ' \
+'--initial-balance=[The initial balance of deployed test contracts]:INITIAL_BALANCE: ' \
+'--sender=[The address which will be executing tests]:SENDER: ' \
+'--gas-limit=[The block gas limit]:GAS_LIMIT: ' \
+'--chain-id=[The chain ID]:CHAIN_ID: ' \
+'--gas-price=[The gas price]:GAS_PRICE: ' \
+'--block-base-fee-per-gas=[The base fee in a block]:BLOCK_BASE_FEE_PER_GAS: ' \
+'--tx-origin=[The transaction origin]:TX_ORIGIN: ' \
+'--block-coinbase=[The coinbase of the block]:BLOCK_COINBASE: ' \
+'--block-timestamp=[The timestamp of the block]:BLOCK_TIMESTAMP: ' \
+'--block-number=[The block number]:BLOCK_NUMBER: ' \
+'--block-difficulty=[The block difficulty]:BLOCK_DIFFICULTY: ' \
+'--block-gas-limit=[The block gas limit]:BLOCK_GAS_LIMIT: ' \
+'--json[prints currently set config values as json]' \
+'--basic[prints basic set of currently set config values]' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'--names[Print compiled contract names.]' \
+'--sizes[Print compiled contract sizes.]' \
+'--no-restart[Do not restart the command while it'\''s still running.]' \
+'--run-all[Explicitly re-run all tests when a change is made]' \
+'--no-storage-caching[Explicitly disables the use of RPC caching]' \
+'--ffi[Enables the FFI cheatcode.]' \
+'*-v[Verbosity of the EVM.]' \
+'*--verbosity[Verbosity of the EVM.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(flatten)
+_arguments "${_arguments_options[@]}" \
+'-o+[The path to output the flattened contract.]:OUTPUT:_files' \
+'--output=[The path to output the flattened contract.]:OUTPUT:_files' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':target-path -- The path to the contract to flatten.:_files' \
+&& ret=0
+;;
+(inspect)
+_arguments "${_arguments_options[@]}" \
+'*--libraries=[Set pre-linked libraries.]:LIBRARIES: ' \
+'--evm-version=[The target EVM version.]:EVM_VERSION: ' \
+'--optimize-runs=[The number of optimizer runs.]:OPTIMIZE_RUNS: ' \
+'*--extra-output=[Extra output to include in the contract'\''s artifact]:EXTRA_OUTPUT: ' \
+'*--extra-output-files=[Extra output to write to separate files]:EXTRA_OUTPUT_FILES: ' \
+'*--ignored-error-codes=[Ignore solc warnings by error code.]:IGNORED_ERROR_CODES: ' \
+'--use=[Specify the solc version, or a path to a local solc, to build with]:use: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'-o+[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--out=[The path to the contract artifacts folder.]:OUT_PATH:_files -/' \
+'--config-path=[Path to the config file.]:CONFIG_PATH:_files' \
+'--force[Clear the cache and artifacts folder and recompile.]' \
+'--optimize[Activate the Solidity optimizer.]' \
+'--no-auto-detect[Do not auto-detect solc.]' \
+'--offline[Do not access the network.]' \
+'--via-ir[Use the Yul intermediate representation compilation pipeline.]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':contract -- The name of the contract to inspect.:' \
+':field -- The contract artifact field to inspect.:' \
+&& ret=0
+;;
+(tree)
+_arguments "${_arguments_options[@]}" \
+'--charset=[Character set to use in output: utf8, ascii]:CHARSET: ' \
+'--root=[The project'\''s root path.]:ROOT:_files -/' \
+'-c+[The contracts source directory.]:CONTRACTS:_files -/' \
+'--contracts=[The contracts source directory.]:CONTRACTS:_files -/' \
+'*-r+[The project'\''s remappings.]:REMAPPINGS: ' \
+'*--remappings=[The project'\''s remappings.]:REMAPPINGS: ' \
+'--remappings-env=[The project'\''s remappings from the environment.]:REMAPPINGS_ENV: ' \
+'--cache-path=[The path to the compiler cache.]:CACHE_PATH:_files -/' \
+'*--lib-paths=[The path to the library folder.]:LIB_PATHS:_files -/' \
+'--no-dedupe[Do not de-duplicate (repeats all shared dependencies)]' \
+'(-c --contracts)--hardhat[Use the Hardhat-style project layout.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+'*::subcommand -- The subcommand whose help message to display:' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_forge_commands] )) ||
+_forge_commands() {
+    local commands; commands=(
+'test:Run the project'\''s tests.' \
+'bind:Generate Rust bindings for smart contracts.' \
+'build:Build the project'\''s smart contracts.' \
+'run:Run a single smart contract as a script.' \
+'update:Update one or multiple dependencies.' \
+'install:Install one or multiple dependencies' \
+'remove:Remove one or multiple dependencies.' \
+'remappings:Get the automatically inferred remappings for the project.' \
+'verify-contract:Verify smart contracts on Etherscan.' \
+'verify-check:Check verification status on Etherscan.' \
+'create:Deploy a smart contract.' \
+'init:Create a new Forge project.' \
+'completions:Generate shell completions script' \
+'clean:Remove the build artifacts and cache directories.' \
+'snapshot:Create a snapshot of each test'\''s gas usage.' \
+'config:Display the current config.' \
+'flatten:Flatten a source file and all of its imports into one file.' \
+'inspect:Get specialized information about a smart contract' \
+'tree:Display a tree visualization of the project'\''s dependency graph.' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'forge commands' commands "$@"
+}
+(( $+functions[_forge__bind_commands] )) ||
+_forge__bind_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge bind commands' commands "$@"
+}
+(( $+functions[_forge__build_commands] )) ||
+_forge__build_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge build commands' commands "$@"
+}
+(( $+functions[_forge__clean_commands] )) ||
+_forge__clean_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge clean commands' commands "$@"
+}
+(( $+functions[_forge__completions_commands] )) ||
+_forge__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge completions commands' commands "$@"
+}
+(( $+functions[_forge__config_commands] )) ||
+_forge__config_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge config commands' commands "$@"
+}
+(( $+functions[_forge__create_commands] )) ||
+_forge__create_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge create commands' commands "$@"
+}
+(( $+functions[_forge__flatten_commands] )) ||
+_forge__flatten_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge flatten commands' commands "$@"
+}
+(( $+functions[_forge__help_commands] )) ||
+_forge__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge help commands' commands "$@"
+}
+(( $+functions[_forge__init_commands] )) ||
+_forge__init_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge init commands' commands "$@"
+}
+(( $+functions[_forge__inspect_commands] )) ||
+_forge__inspect_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge inspect commands' commands "$@"
+}
+(( $+functions[_forge__install_commands] )) ||
+_forge__install_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge install commands' commands "$@"
+}
+(( $+functions[_forge__remappings_commands] )) ||
+_forge__remappings_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge remappings commands' commands "$@"
+}
+(( $+functions[_forge__remove_commands] )) ||
+_forge__remove_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge remove commands' commands "$@"
+}
+(( $+functions[_forge__run_commands] )) ||
+_forge__run_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge run commands' commands "$@"
+}
+(( $+functions[_forge__snapshot_commands] )) ||
+_forge__snapshot_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge snapshot commands' commands "$@"
+}
+(( $+functions[_forge__test_commands] )) ||
+_forge__test_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge test commands' commands "$@"
+}
+(( $+functions[_forge__tree_commands] )) ||
+_forge__tree_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge tree commands' commands "$@"
+}
+(( $+functions[_forge__update_commands] )) ||
+_forge__update_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge update commands' commands "$@"
+}
+(( $+functions[_forge__verify-check_commands] )) ||
+_forge__verify-check_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge verify-check commands' commands "$@"
+}
+(( $+functions[_forge__verify-contract_commands] )) ||
+_forge__verify-contract_commands() {
+    local commands; commands=()
+    _describe -t commands 'forge verify-contract commands' commands "$@"
+}
+
+_forge "$@"

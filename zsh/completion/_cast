@@ -1,0 +1,1151 @@
+#compdef cast
+
+autoload -U is-at-least
+
+_cast() {
+    typeset -A opt_args
+    typeset -a _arguments_options
+    local ret=1
+
+    if is-at-least 5.2; then
+        _arguments_options=(-s -S -C)
+    else
+        _arguments_options=(-s -C)
+    fi
+
+    local context curcontext="$curcontext" state line
+    _arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
+":: :_cast_commands" \
+"*::: :->cast" \
+&& ret=0
+    case $state in
+    (cast)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:cast-command-$line[1]:"
+        case $line[1] in
+            (--max-int)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(--min-int)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(--max-uint)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(--from-utf8)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::text:' \
+&& ret=0
+;;
+(--to-hex)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::decimal:' \
+&& ret=0
+;;
+(--concat-hex)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::data:' \
+&& ret=0
+;;
+(--from-bin)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(--to-hexdata)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::input:' \
+&& ret=0
+;;
+(--to-checksum-address)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::address:' \
+&& ret=0
+;;
+(--to-ascii)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::hexdata:' \
+&& ret=0
+;;
+(--from-fix)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::decimals:' \
+'::value:' \
+&& ret=0
+;;
+(--to-bytes32)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::bytes:' \
+&& ret=0
+;;
+(--to-dec)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::hexvalue:' \
+&& ret=0
+;;
+(--to-fix)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::decimals:' \
+'::value:' \
+&& ret=0
+;;
+(--to-uint256)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::value:' \
+&& ret=0
+;;
+(--to-int256)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::value:' \
+&& ret=0
+;;
+(--to-unit)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::value:' \
+'::unit -- The unit to convert to (ether, gwei, wei).:' \
+&& ret=0
+;;
+(--to-wei)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::value:' \
+'::unit:' \
+&& ret=0
+;;
+(--from-wei)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::value:' \
+'::unit:' \
+&& ret=0
+;;
+(access-list)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'--rpc-url=[The RPC endpoint.]:RPC_URL: ' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'--chain=[]:CHAIN: ' \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--flashbots[Use the flashbots RPC URL (https://rpc.flashbots.net)]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'-j[]' \
+'--json[]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- The destination of the transaction.:' \
+':sig -- The signature of the function to call.:' \
+'*::args -- The arguments of the function to call.:' \
+&& ret=0
+;;
+(block)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-f+[If specified, only get the given field of the block.]:FIELD: ' \
+'--field=[If specified, only get the given field of the block.]:FIELD: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'--full[]' \
+'-j[]' \
+'--json[]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(block-number)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(call)
+_arguments "${_arguments_options[@]}" \
+'-b+[the block you want to query, can also be earliest/latest/pending]:BLOCK: ' \
+'--block=[the block you want to query, can also be earliest/latest/pending]:BLOCK: ' \
+'--rpc-url=[The RPC endpoint.]:RPC_URL: ' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'--chain=[]:CHAIN: ' \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--flashbots[Use the flashbots RPC URL (https://rpc.flashbots.net)]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- the address you want to query:' \
+':sig:' \
+'*::args:' \
+&& ret=0
+;;
+(calldata)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':sig -- The function signature.:' \
+'*::args:' \
+&& ret=0
+;;
+(chain)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(chain-id)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(client)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(compute-address)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'--nonce=[The nonce of the deployer address.]:NONCE: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- The deployer address.:' \
+&& ret=0
+;;
+(namehash)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':name:' \
+&& ret=0
+;;
+(tx)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'-j[]' \
+'--json[]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':hash:' \
+'::field:' \
+&& ret=0
+;;
+(receipt)
+_arguments "${_arguments_options[@]}" \
+'-c+[The number of confirmations until the receipt is fetched]:CONFIRMATIONS: ' \
+'--confirmations=[The number of confirmations until the receipt is fetched]:CONFIRMATIONS: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'--cast-async[]' \
+'-j[]' \
+'--json[]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':hash:' \
+'::field:' \
+&& ret=0
+;;
+(send)
+_arguments "${_arguments_options[@]}" \
+'--gas=[Gas limit for the transaction.]:GAS: ' \
+'--gas-price=[Gas price for legacy transactions, or max fee per gas for EIP1559 transactions.]:GAS_PRICE: ' \
+'--value=[Ether to send in the transaction.]:VALUE: ' \
+'--nonce=[nonce for the transaction]:NONCE: ' \
+'--rpc-url=[The RPC endpoint.]:RPC_URL: ' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'--chain=[]:CHAIN: ' \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'-c+[The number of confirmations until the receipt is fetched.]:CONFIRMATIONS: ' \
+'--confirmations=[The number of confirmations until the receipt is fetched.]:CONFIRMATIONS: ' \
+'--cast-async[]' \
+'--flashbots[Use the flashbots RPC URL (https://rpc.flashbots.net)]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'--legacy[Send a legacy transaction instead of an EIP1559 transaction.]' \
+'-j[]' \
+'--json[]' \
+'(--nonce)--resend[Reuse the latest nonce for the sender account.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':to -- The destination of the transaction.:' \
+'::sig -- The signature of the function to call.:' \
+'*::args -- The arguments of the function to call.:' \
+&& ret=0
+;;
+(publish)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[The RPC endpoint.]:RPC_URL: ' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'--chain=[]:CHAIN: ' \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--cast-async[]' \
+'--flashbots[Use the flashbots RPC URL (https://rpc.flashbots.net)]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':raw-tx -- The raw transaction:' \
+&& ret=0
+;;
+(estimate)
+_arguments "${_arguments_options[@]}" \
+'--value=[Ether to send in the transaction.]:VALUE: ' \
+'--rpc-url=[The RPC endpoint.]:RPC_URL: ' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'--chain=[]:CHAIN: ' \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--flashbots[Use the flashbots RPC URL (https://rpc.flashbots.net)]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':to -- The destination of the transaction.:' \
+':sig -- The signature of the function to call.:' \
+'*::args -- The arguments of the function to call.:' \
+&& ret=0
+;;
+(--calldata-decode)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':sig -- The function signature in the format `<name>(<in-types>)(<out-types>)`.:' \
+':calldata -- The ABI-encoded calldata.:' \
+&& ret=0
+;;
+(--abi-decode)
+_arguments "${_arguments_options[@]}" \
+'-i[Decode input data.]' \
+'--input[Decode input data.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':sig -- The function signature in the format `<name>(<in-types>)(<out-types>)`.:' \
+':calldata -- The ABI-encoded calldata.:' \
+&& ret=0
+;;
+(abi-encode)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':sig -- The function signature.:' \
+'*::args -- The arguments of the function.:' \
+&& ret=0
+;;
+(index)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':key-type -- The mapping key type.:' \
+':value-type -- The mapping value type.:' \
+':key -- The mapping key.:' \
+':slot-number -- The storage slot of the mapping.:' \
+&& ret=0
+;;
+(4byte)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':selector -- The function selector.:' \
+&& ret=0
+;;
+(4byte-decode)
+_arguments "${_arguments_options[@]}" \
+'--id=[The index of the resolved signature to use.]:ID: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':calldata -- The ABI-encoded calldata.:' \
+&& ret=0
+;;
+(4byte-event)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':topic -- Topic 0:' \
+&& ret=0
+;;
+(pretty-calldata)
+_arguments "${_arguments_options[@]}" \
+'-o[Skip the 4byte directory lookup.]' \
+'--offline[Skip the 4byte directory lookup.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':calldata -- The calldata.:' \
+&& ret=0
+;;
+(age)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(balance)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':who -- The account you want to query:' \
+&& ret=0
+;;
+(basefee)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(code)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':who -- The contract address.:' \
+&& ret=0
+;;
+(gas-price)
+_arguments "${_arguments_options[@]}" \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(keccak)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':data:' \
+&& ret=0
+;;
+(resolve-name)
+_arguments "${_arguments_options[@]}" \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-v[Perform a reverse lookup to verify that the name is correct.]' \
+'--verify[Perform a reverse lookup to verify that the name is correct.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::who -- The name to lookup.:' \
+&& ret=0
+;;
+(lookup-address)
+_arguments "${_arguments_options[@]}" \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-v[Perform a normal lookup to verify that the address is correct.]' \
+'--verify[Perform a normal lookup to verify that the address is correct.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::who -- The account to perform the lookup for.:' \
+&& ret=0
+;;
+(storage)
+_arguments "${_arguments_options[@]}" \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- The contract address.:' \
+':slot -- The storage slot number (hex or decimal):' \
+&& ret=0
+;;
+(proof)
+_arguments "${_arguments_options[@]}" \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- The contract address.:' \
+'*::slots -- The storage slot numbers (hex or decimal).:' \
+&& ret=0
+;;
+(nonce)
+_arguments "${_arguments_options[@]}" \
+'-B+[The block height you want to query at.]:BLOCK: ' \
+'--block=[The block height you want to query at.]:BLOCK: ' \
+'-r+[]:RPC_URL: ' \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':who -- The address you want to get the nonce for.:' \
+&& ret=0
+;;
+(etherscan-source)
+_arguments "${_arguments_options[@]}" \
+'-c+[]:INNER:(mainnet ropsten rinkeby goerli kovan xdai polygon polygon_mumbai avalanche avalanche_fuji sepolia moonbeam moonbeam_dev moonriver optimism optimism-kovan)' \
+'--chain=[]:INNER:(mainnet ropsten rinkeby goerli kovan xdai polygon polygon_mumbai avalanche avalanche_fuji sepolia moonbeam moonbeam_dev moonriver optimism optimism-kovan)' \
+'-d+[The output directory to expand source tree into.]:DIRECTORY:_files -/' \
+'--etherscan-api-key=[]:ETHERSCAN_API_KEY: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':address -- The contract'\''s address.:' \
+&& ret=0
+;;
+(wallet)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+":: :_cast__wallet_commands" \
+"*::: :->wallet" \
+&& ret=0
+
+    case $state in
+    (wallet)
+        words=($line[1] "${words[@]}")
+        (( CURRENT += 1 ))
+        curcontext="${curcontext%:*:*}:cast-wallet-command-$line[1]:"
+        case $line[1] in
+            (new)
+_arguments "${_arguments_options[@]}" \
+'--unsafe-password=[Password for the JSON keystore in cleartext. This is UNSAFE to use and we recommend using the --password.]:UNSAFE_PASSWORD: ' \
+'--version[Print version information]' \
+'(--unsafe-password)-p[Triggers a hidden password prompt for the JSON keystore.]' \
+'(--unsafe-password)--password[Triggers a hidden password prompt for the JSON keystore.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'::path -- If provided, then keypair will be written to an encrypted JSON keystore.:' \
+&& ret=0
+;;
+(vanity)
+_arguments "${_arguments_options[@]}" \
+'--starts-with=[Prefix for the vanity address.]:STARTS_WITH: ' \
+'--ends-with=[Suffix for the vanity address.]:ENDS_WITH: ' \
+'--nonce=[Generate a vanity contract address created by the generated keypair with the specified nonce.]:NONCE: ' \
+'--version[Print version information]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(address)
+_arguments "${_arguments_options[@]}" \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--version[Print version information]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+&& ret=0
+;;
+(sign)
+_arguments "${_arguments_options[@]}" \
+'--private-key=[Use the provided private key.]:PRIVATE_KEY: ' \
+'--mnemonic-path=[Use the mnemonic file at the specified path.]:MNEMONIC_PATH: ' \
+'--mnemonic-index=[Use the private key from the given mnemonic index. Used with --mnemonic-path.]:MNEMONIC_INDEX: ' \
+'--keystore=[Use the keystore in the given folder or file.]:KEYSTORE_PATH: ' \
+'--password=[The keystore password. Used with --keystore.]:KEYSTORE_PASSWORD: ' \
+'--hd-path=[The derivation path to use with hardware wallets.]:HD_PATH: ' \
+'-f+[The sender account.]:FROM: ' \
+'--from=[The sender account.]:FROM: ' \
+'--version[Print version information]' \
+'-i[Open an interactive prompt to enter your private key.]' \
+'--interactive[Open an interactive prompt to enter your private key.]' \
+'-l[Use a Ledger hardware wallet.]' \
+'--ledger[Use a Ledger hardware wallet.]' \
+'-t[Use a Trezor hardware wallet.]' \
+'--trezor[Use a Trezor hardware wallet.]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':message -- message to sign:' \
+&& ret=0
+;;
+(verify)
+_arguments "${_arguments_options[@]}" \
+'-a+[The address of the message signer.]:ADDRESS: ' \
+'--address=[The address of the message signer.]:ADDRESS: ' \
+'--version[Print version information]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':message -- The original message.:' \
+':signature -- The signature to verify.:' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+'--version[Print version information]' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'*::subcommand -- The subcommand whose help message to display:' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+;;
+(interface)
+_arguments "${_arguments_options[@]}" \
+'-p+[Solidity pragma version.]:PRAGMA: ' \
+'--pragma=[Solidity pragma version.]:PRAGMA: ' \
+'-o+[The path to the output file.]:OUTPUT_LOCATION: ' \
+'-e+[etherscan API key]:ETHERSCAN_API_KEY: ' \
+'--etherscan-api-key=[etherscan API key]:ETHERSCAN_API_KEY: ' \
+'-c+[]:INNER:(mainnet ropsten rinkeby goerli kovan xdai polygon polygon_mumbai avalanche avalanche_fuji sepolia moonbeam moonbeam_dev moonriver optimism optimism-kovan)' \
+'--chain=[]:INNER:(mainnet ropsten rinkeby goerli kovan xdai polygon polygon_mumbai avalanche avalanche_fuji sepolia moonbeam moonbeam_dev moonriver optimism optimism-kovan)' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':path-or-address -- The contract address, or the path to an ABI file.:' \
+&& ret=0
+;;
+(sig)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':sig -- The function signature, e.g. transfer(address,uint256).:' \
+&& ret=0
+;;
+(find-block)
+_arguments "${_arguments_options[@]}" \
+'--rpc-url=[]:RPC_URL: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':timestamp -- The UNIX timestamp to search for (in seconds):' \
+&& ret=0
+;;
+(completions)
+_arguments "${_arguments_options[@]}" \
+'-h[Print help information]' \
+'--help[Print help information]' \
+':shell:(bash elvish fish powershell zsh)' \
+&& ret=0
+;;
+(help)
+_arguments "${_arguments_options[@]}" \
+'*::subcommand -- The subcommand whose help message to display:' \
+&& ret=0
+;;
+        esac
+    ;;
+esac
+}
+
+(( $+functions[_cast_commands] )) ||
+_cast_commands() {
+    local commands; commands=(
+'--max-int:Get the maximum i256 value.' \
+'--min-int:Get the minimum i256 value.' \
+'--max-uint:Get the maximum u256 value.' \
+'--from-utf8:Convert UTF8 text to hex.' \
+'--to-hex:Convert an integer to hex.' \
+'--concat-hex:Concatencate hex strings.' \
+'--from-bin:Convert binary data into hex data.' \
+'--to-hexdata:Normalize the input to lowercase, 0x-prefixed hex. See --help for more info.' \
+'--to-checksum-address:Convert an address to a checksummed format (EIP-55).' \
+'--to-ascii:Convert hex data to an ASCII string.' \
+'--from-fix:Convert a fixed point number into an integer.' \
+'--to-bytes32:Right-pads hex data to 32 bytes.' \
+'--to-dec:Convert hex value into a decimal number.' \
+'--to-fix:Convert an integer into a fixed point number.' \
+'--to-uint256:Convert a number to a hex-encoded uint256.' \
+'--to-int256:Convert a number to a hex-encoded int256.' \
+'--to-unit:Convert an ETH amount into another unit (ether, gwei or wei).' \
+'--to-wei:Convert an ETH amount to wei. Consider using --to-unit.' \
+'--from-wei:Convert wei into an ETH amount. Consider using --to-unit.' \
+'access-list:Create an access list for a transaction.' \
+'block:Get information about a block.' \
+'block-number:Get the latest block number.' \
+'call:Perform a call on an account without publishing a transaction.' \
+'calldata:ABI-encode a function with arguments.' \
+'chain:Get the symbolic name of the current chain.' \
+'chain-id:Get the Ethereum chain ID.' \
+'client:Get the current client version.' \
+'compute-address:Compute the contract address from a given nonce and deployer address.' \
+'namehash:Calculate the ENS namehash of a name.' \
+'tx:Get information about a transaction.' \
+'receipt:Get the transaction receipt for a transaction.' \
+'send:Sign and publish a transaction.' \
+'publish:Publish a raw transaction to the network.' \
+'estimate:Estimate the gas cost of a transaction.' \
+'--calldata-decode:Decode ABI-encoded input data.' \
+'--abi-decode:Decode ABI-encoded input or output data' \
+'abi-encode:ABI encode the given function argument, excluding the selector.' \
+'index:Compute the storage slot for an entry in a mapping.' \
+'4byte:Get the function signatures for the given selector from 4byte.directory.' \
+'4byte-decode:Decode ABI-encoded calldata using 4byte.directory.' \
+'4byte-event:Get the event signature for a given topic 0 from 4byte.directory.' \
+'pretty-calldata:Pretty print calldata.' \
+'age:Get the timestamp of a block.' \
+'balance:Get the balance of an account in wei.' \
+'basefee:Get the basefee of a block.' \
+'code:Get the bytecode of a contract.' \
+'gas-price:Get the current gas price.' \
+'keccak:Hash arbitrary data using keccak-256.' \
+'resolve-name:Perform an ENS lookup.' \
+'lookup-address:Perform an ENS reverse lookup.' \
+'storage:Get the raw value of a contract'\''s storage slot.' \
+'proof:Generate a storage proof for a given storage slot.' \
+'nonce:Get the nonce for an account.' \
+'etherscan-source:Get the source code of a contract from Etherscan.' \
+'wallet:Wallet management utilities.' \
+'interface:Generate a Solidity interface from a given ABI.' \
+'sig:Get the selector for a function.' \
+'find-block:Get the block number closest to the provided timestamp.' \
+'completions:Generate shell completions script' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'cast commands' commands "$@"
+}
+(( $+functions[_cast__--abi-decode_commands] )) ||
+_cast__--abi-decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --abi-decode commands' commands "$@"
+}
+(( $+functions[_cast__--calldata-decode_commands] )) ||
+_cast__--calldata-decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --calldata-decode commands' commands "$@"
+}
+(( $+functions[_cast__--concat-hex_commands] )) ||
+_cast__--concat-hex_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --concat-hex commands' commands "$@"
+}
+(( $+functions[_cast__--from-bin_commands] )) ||
+_cast__--from-bin_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --from-bin commands' commands "$@"
+}
+(( $+functions[_cast__--from-fix_commands] )) ||
+_cast__--from-fix_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --from-fix commands' commands "$@"
+}
+(( $+functions[_cast__--from-utf8_commands] )) ||
+_cast__--from-utf8_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --from-utf8 commands' commands "$@"
+}
+(( $+functions[_cast__--from-wei_commands] )) ||
+_cast__--from-wei_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --from-wei commands' commands "$@"
+}
+(( $+functions[_cast__--max-int_commands] )) ||
+_cast__--max-int_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --max-int commands' commands "$@"
+}
+(( $+functions[_cast__--max-uint_commands] )) ||
+_cast__--max-uint_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --max-uint commands' commands "$@"
+}
+(( $+functions[_cast__--min-int_commands] )) ||
+_cast__--min-int_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --min-int commands' commands "$@"
+}
+(( $+functions[_cast__--to-ascii_commands] )) ||
+_cast__--to-ascii_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-ascii commands' commands "$@"
+}
+(( $+functions[_cast__--to-bytes32_commands] )) ||
+_cast__--to-bytes32_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-bytes32 commands' commands "$@"
+}
+(( $+functions[_cast__--to-checksum-address_commands] )) ||
+_cast__--to-checksum-address_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-checksum-address commands' commands "$@"
+}
+(( $+functions[_cast__--to-dec_commands] )) ||
+_cast__--to-dec_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-dec commands' commands "$@"
+}
+(( $+functions[_cast__--to-fix_commands] )) ||
+_cast__--to-fix_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-fix commands' commands "$@"
+}
+(( $+functions[_cast__--to-hex_commands] )) ||
+_cast__--to-hex_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-hex commands' commands "$@"
+}
+(( $+functions[_cast__--to-hexdata_commands] )) ||
+_cast__--to-hexdata_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-hexdata commands' commands "$@"
+}
+(( $+functions[_cast__--to-int256_commands] )) ||
+_cast__--to-int256_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-int256 commands' commands "$@"
+}
+(( $+functions[_cast__--to-uint256_commands] )) ||
+_cast__--to-uint256_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-uint256 commands' commands "$@"
+}
+(( $+functions[_cast__--to-unit_commands] )) ||
+_cast__--to-unit_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-unit commands' commands "$@"
+}
+(( $+functions[_cast__--to-wei_commands] )) ||
+_cast__--to-wei_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast --to-wei commands' commands "$@"
+}
+(( $+functions[_cast__4byte_commands] )) ||
+_cast__4byte_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast 4byte commands' commands "$@"
+}
+(( $+functions[_cast__4byte-decode_commands] )) ||
+_cast__4byte-decode_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast 4byte-decode commands' commands "$@"
+}
+(( $+functions[_cast__4byte-event_commands] )) ||
+_cast__4byte-event_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast 4byte-event commands' commands "$@"
+}
+(( $+functions[_cast__abi-encode_commands] )) ||
+_cast__abi-encode_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast abi-encode commands' commands "$@"
+}
+(( $+functions[_cast__access-list_commands] )) ||
+_cast__access-list_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast access-list commands' commands "$@"
+}
+(( $+functions[_cast__wallet__address_commands] )) ||
+_cast__wallet__address_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast wallet address commands' commands "$@"
+}
+(( $+functions[_cast__age_commands] )) ||
+_cast__age_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast age commands' commands "$@"
+}
+(( $+functions[_cast__balance_commands] )) ||
+_cast__balance_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast balance commands' commands "$@"
+}
+(( $+functions[_cast__basefee_commands] )) ||
+_cast__basefee_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast basefee commands' commands "$@"
+}
+(( $+functions[_cast__block_commands] )) ||
+_cast__block_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast block commands' commands "$@"
+}
+(( $+functions[_cast__block-number_commands] )) ||
+_cast__block-number_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast block-number commands' commands "$@"
+}
+(( $+functions[_cast__call_commands] )) ||
+_cast__call_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast call commands' commands "$@"
+}
+(( $+functions[_cast__calldata_commands] )) ||
+_cast__calldata_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast calldata commands' commands "$@"
+}
+(( $+functions[_cast__chain_commands] )) ||
+_cast__chain_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast chain commands' commands "$@"
+}
+(( $+functions[_cast__chain-id_commands] )) ||
+_cast__chain-id_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast chain-id commands' commands "$@"
+}
+(( $+functions[_cast__client_commands] )) ||
+_cast__client_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast client commands' commands "$@"
+}
+(( $+functions[_cast__code_commands] )) ||
+_cast__code_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast code commands' commands "$@"
+}
+(( $+functions[_cast__completions_commands] )) ||
+_cast__completions_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast completions commands' commands "$@"
+}
+(( $+functions[_cast__compute-address_commands] )) ||
+_cast__compute-address_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast compute-address commands' commands "$@"
+}
+(( $+functions[_cast__estimate_commands] )) ||
+_cast__estimate_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast estimate commands' commands "$@"
+}
+(( $+functions[_cast__etherscan-source_commands] )) ||
+_cast__etherscan-source_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast etherscan-source commands' commands "$@"
+}
+(( $+functions[_cast__find-block_commands] )) ||
+_cast__find-block_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast find-block commands' commands "$@"
+}
+(( $+functions[_cast__gas-price_commands] )) ||
+_cast__gas-price_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast gas-price commands' commands "$@"
+}
+(( $+functions[_cast__help_commands] )) ||
+_cast__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast help commands' commands "$@"
+}
+(( $+functions[_cast__wallet__help_commands] )) ||
+_cast__wallet__help_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast wallet help commands' commands "$@"
+}
+(( $+functions[_cast__index_commands] )) ||
+_cast__index_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast index commands' commands "$@"
+}
+(( $+functions[_cast__interface_commands] )) ||
+_cast__interface_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast interface commands' commands "$@"
+}
+(( $+functions[_cast__keccak_commands] )) ||
+_cast__keccak_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast keccak commands' commands "$@"
+}
+(( $+functions[_cast__lookup-address_commands] )) ||
+_cast__lookup-address_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast lookup-address commands' commands "$@"
+}
+(( $+functions[_cast__namehash_commands] )) ||
+_cast__namehash_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast namehash commands' commands "$@"
+}
+(( $+functions[_cast__wallet__new_commands] )) ||
+_cast__wallet__new_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast wallet new commands' commands "$@"
+}
+(( $+functions[_cast__nonce_commands] )) ||
+_cast__nonce_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast nonce commands' commands "$@"
+}
+(( $+functions[_cast__pretty-calldata_commands] )) ||
+_cast__pretty-calldata_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast pretty-calldata commands' commands "$@"
+}
+(( $+functions[_cast__proof_commands] )) ||
+_cast__proof_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast proof commands' commands "$@"
+}
+(( $+functions[_cast__publish_commands] )) ||
+_cast__publish_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast publish commands' commands "$@"
+}
+(( $+functions[_cast__receipt_commands] )) ||
+_cast__receipt_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast receipt commands' commands "$@"
+}
+(( $+functions[_cast__resolve-name_commands] )) ||
+_cast__resolve-name_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast resolve-name commands' commands "$@"
+}
+(( $+functions[_cast__send_commands] )) ||
+_cast__send_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast send commands' commands "$@"
+}
+(( $+functions[_cast__sig_commands] )) ||
+_cast__sig_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast sig commands' commands "$@"
+}
+(( $+functions[_cast__wallet__sign_commands] )) ||
+_cast__wallet__sign_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast wallet sign commands' commands "$@"
+}
+(( $+functions[_cast__storage_commands] )) ||
+_cast__storage_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast storage commands' commands "$@"
+}
+(( $+functions[_cast__tx_commands] )) ||
+_cast__tx_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast tx commands' commands "$@"
+}
+(( $+functions[_cast__wallet__vanity_commands] )) ||
+_cast__wallet__vanity_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast wallet vanity commands' commands "$@"
+}
+(( $+functions[_cast__wallet__verify_commands] )) ||
+_cast__wallet__verify_commands() {
+    local commands; commands=()
+    _describe -t commands 'cast wallet verify commands' commands "$@"
+}
+(( $+functions[_cast__wallet_commands] )) ||
+_cast__wallet_commands() {
+    local commands; commands=(
+'new:Create a new random keypair.' \
+'vanity:Generate a vanity address.' \
+'address:Convert a private key to an address.' \
+'sign:Sign a message.' \
+'verify:Verify the signature of a message.' \
+'help:Print this message or the help of the given subcommand(s)' \
+    )
+    _describe -t commands 'cast wallet commands' commands "$@"
+}
+
+_cast "$@"
