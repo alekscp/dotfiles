@@ -75,6 +75,8 @@ require("packer").startup(function()
 
     use "kdheepak/lazygit.nvim"
 
+    use "arcticicestudio/nord-vim"
+
     -- use "jose-elias-alvarez/null-ls.nvim"
   end
 end)
@@ -120,7 +122,7 @@ require"nvim-treesitter.configs".setup {
   },
   indent = {
     enable = true,
-    disable = { "yaml" },
+    disable = { "yaml", "python" },
   },
 }
 
@@ -303,6 +305,7 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 g.gruvbox_contrast_dark = "soft"
 cmd[[colorscheme gruvbox]]
+-- cmd[[colorscheme nord]]
 cmd "set encoding=utf-8"
 cmd "set hidden"
 cmd "set ruler"
