@@ -6,6 +6,9 @@ export PATH="$HOME/bin:$PATH:$MYSQL"
 # Go
 export GOPATH=$HOME/go
 
+# Go packages
+export PATH="$PATH:/Users/aclapinpepin/go/bin"
+
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home"
 export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
