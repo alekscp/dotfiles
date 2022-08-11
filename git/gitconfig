@@ -40,6 +40,7 @@
   gpgsign = true
 [push]
   default = upstream
+  autoSetupRemote = true
 [github]
   user = alekscp
 [init]
