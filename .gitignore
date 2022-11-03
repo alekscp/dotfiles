@@ -1,4 +1,3 @@
-secret.zsh
-aws/
-
 zsh/configs/arcx.zsh
+zsh/configs/secret.zsh
+aws/
