@@ -10,6 +10,3 @@
 .idea
 .vagrant
 FLOOBITS_README.md
-
-# Pyright LSP config
-pyproject.toml
