@@ -17,7 +17,8 @@ export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Python3
-export PATH="$HOME/Library/Python/3.7/bin:$PATH"
+# NOTE: Mamba is overriding the default Python3
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # LLVM
 export PATH="/usr/local/opt/llvm/bin:$PATH"
