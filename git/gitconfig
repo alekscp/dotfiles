@@ -1,6 +1,6 @@
 [user]
-  name = Aleks Clapin-Pepin
-  email = aclapinpepin@gmail.com
+  name = alekscp
+  email = cryptoacp@protonmail.com
   signingkey = 540C7D708C3C0FB1
 [credential]
   helper = cache --timeout=3600
