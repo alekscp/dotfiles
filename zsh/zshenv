@@ -3,6 +3,9 @@ export PATH="/usr/local/sbin:$PATH"
 
 export PATH="$HOME/bin:$PATH:$MYSQL"
 
+# Change XDG config directory
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Go
 export GOPATH=$HOME/go
 
@@ -19,6 +22,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Python3
 # NOTE: Mamba is overriding the default Python3
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="$PATH:/Users/aclapinpepin/Library/Python/3.11/bin"
 
 # LLVM
 export PATH="/usr/local/opt/llvm/bin:$PATH"

@@ -47,6 +47,19 @@ return {
           local lua_opts = lsp_zero.nvim_lua_ls()
           require('lspconfig').lua_ls.setup(lua_opts)
         end,
+        ansiblels = function()
+          local lspconfig = require('lspconfig')
+          lspconfig.ansiblels.setup({
+            filetypes = {'yaml', 'ansible'},
+            root_dir = lspconfig.util.root_pattern('ansible.cfg', 'inventories', 'roles', 'playbooks'),
+          })
+        end,
+        ['jinja_lsp'] = function()
+          local lspconfig = require('lspconfig')
+          lspconfig.jinja_lsp.setup({
+            filetypes = {'jinja', 'jinja2', 'j2'},
+          })
+        end
       }
     })
 

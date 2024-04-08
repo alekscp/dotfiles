@@ -10,6 +10,8 @@ $line_break\
 $python\
 $character"""
 
+add_newline = false
+
 [directory]
 style = "blue"
 truncate_to_repo = false
@@ -45,3 +47,6 @@ style = "yellow"
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
+
+[conda]
+format = "[$symbol$environment]($style) "
