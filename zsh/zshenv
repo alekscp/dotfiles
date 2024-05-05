@@ -23,6 +23,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # NOTE: Mamba is overriding the default Python3
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:/Users/aclapinpepin/Library/Python/3.11/bin"
+export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:$PATH"
 
 # LLVM
 export PATH="/usr/local/opt/llvm/bin:$PATH"
@@ -33,8 +34,11 @@ if [ -f '/Users/aclapinpepin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ac
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc'; fi
 
-# gpg
-export GPG_TTY=$(tty)
-
 # foundry https://github.com/foundry-rs/foundry
 export PATH="$PATH:/Users/aclapinpepin/.foundry/bin"
+
+# Solana
+export PATH="/Users/aclapinpepin/.local/share/solana/install/active_release/bin:$PATH"
+
+# gpg
+export GPG_TTY=$(tty)
