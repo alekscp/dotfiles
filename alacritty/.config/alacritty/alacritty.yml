@@ -29,7 +29,7 @@ window:
   # Number of lines/columns (not pixels) in the terminal. The number of columns
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
-  #dimensions:
+  # dimensions:
   #  columns: 0
   #  lines: 0
 
@@ -37,7 +37,7 @@ window:
   #
   # Specified in number of pixels.
   # If the position is not set, the window manager will handle the placement.
-  #position:
+  # position:
   #  x: 0
   #  y: 0
 
@@ -74,26 +74,26 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  #startup_mode: Windowed
+  # startup_mode: Windowed
 
   # Window title
   title: alnecultra
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  # dynamic_title: true
 
   # Window class (Linux/BSD only):
-  #class:
+  # class:
     # Application instance name
-    #instance: Alacritty
+    # instance: Alacritty
     # General application class
-    #general: Alacritty
+    # general: Alacritty
 
   # GTK theme variant (Linux/BSD only)
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark`
   # and `light`. Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
+  # gtk_theme_variant: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -101,7 +101,7 @@ scrolling:
   history: 10000
 
   # Scrolling distance multiplier.
-  #multiplier: 3
+  # multiplier: 3
 
 # Font configuration
 font:
@@ -117,7 +117,8 @@ font:
     # family: RobotoMono Nerd Font Mono
     # family: "mononoki Nerd Font"
     # family: FiraCode Nerd Font Mono
-    family: FiraMono Nerd Font Mono
+    # family: FiraMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     # family: Inconsolata Nerd Font Mono
 
     # The `style` can be specified to pick a specific face.
@@ -131,7 +132,8 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     # family: FiraCode Nerd Font Mono
-    family: FiraMono Nerd Font Mono
+    # family: FiraMono Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     # family: Hack Nerd Font Mono
     # family: Inconsolata Nerd Font Mono
 
@@ -150,15 +152,15 @@ font:
     # style: Italic
 
   # Bold italic font face
-  #bold_italic:
+  # bold_italic:
     # Font family
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
+    # family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #style: Bold Italic
+    # style: Bold Italic
 
   # Point size
   size: 14.0
@@ -166,14 +168,14 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
   # spacing.
-  #offset:
+  # offset:
   #  x: 0
   #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the
   # right, increasing `y` moves the glyph upward.
-  #glyph_offset:
+  # glyph_offset:
   #  x: 0
   #  y: 0
 
@@ -303,7 +305,7 @@ font:
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
-#bell:
+# bell:
   # Visual Bell Animation
   #
   # Animation effect for flashing the screen when the visual bell is rung.
@@ -319,14 +321,14 @@ font:
   #   - EaseOutExpo
   #   - EaseOutCirc
   #   - Linear
-  #animation: EaseOutExpo
+  # animation: EaseOutExpo
 
   # Duration of the visual bell flash in milliseconds. A `duration` of `0` will
   # disable the visual bell animation.
-  #duration: 0
+  # duration: 0
 
   # Visual bell animation color.
-  #color: '#ffffff'
+  # color: '#ffffff'
 
   # Bell Command
   #
@@ -339,7 +341,7 @@ font:
   #     program: notify-send
   #     args: ["Hello, World!"]
   #
-  #command: None
+  # command: None
 
 # Background opacity
 #
@@ -347,13 +349,13 @@ font:
 # The value `0.0` is completely transparent and `1.0` is opaque.
 # window.opacity: 0.8
 
-#selection:
+# selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
-  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  # semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
-  #save_to_clipboard: false
+  # save_to_clipboard: false
 
 cursor:
   # Cursor style
@@ -381,21 +383,21 @@ cursor:
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  #vi_mode_style: None
+  # vi_mode_style: None
 
   # Cursor blinking interval in milliseconds.
-  #blink_interval: 750
+  # blink_interval: 750
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  # unfocused_hollow: true
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  #thickness: 0.15
+  # thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+# live_config_reload: true
 
 # Shell
 #
@@ -418,7 +420,7 @@ shell:
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+# working_directory: None
 
 # Send ESC (\x1b) before characters when alt is pressed.
 # alt_send_esc: false
@@ -430,8 +432,8 @@ mouse:
   # The `double_click` and `triple_click` settings control the time
   # alacritty should wait for accepting multiple clicks as one double
   # or triple click.
-  #double_click: { threshold: 300 }
-  #triple_click: { threshold: 300 }
+  # double_click: { threshold: 300 }
+  # triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
@@ -440,9 +442,9 @@ mouse:
 #
 # Terminal hints can be used to find text in the visible part of the terminal
 # and pipe it to other applications.
-#hints:
+# hints:
   # Keys used for the hint labels.
-  #alphabet: "jfkdls;ahgurieowpq"
+  # alphabet: "jfkdls;ahgurieowpq"
 
   # List with all available hints
   #
@@ -468,7 +470,7 @@ mouse:
   #       Select the hint's text.
   #   - MoveViModeCursor
   #       Move the vi mode cursor to the beginning of the hint.
-  #enabled:
+  # enabled:
   # - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
   #           [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
   #   command: xdg-open
@@ -503,7 +505,7 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-#mouse_bindings:
+# mouse_bindings:
 #  - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
@@ -825,12 +827,12 @@ key_bindings:
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
 
-#debug:
+# debug:
   # Display the time it takes to redraw each frame.
-  #render_timer: false
+  # render_timer: false
 
   # Keep the log file after quitting Alacritty.
-  #persistent_logging: false
+  # persistent_logging: false
 
   # Log level
   #
@@ -841,7 +843,7 @@ key_bindings:
   #   - Info
   #   - Debug
   #   - Trace
-  #log_level: Warn
+  # log_level: Warn
 
   # Print all received window events.
-  #print_events: false
+  # print_events: false
