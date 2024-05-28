@@ -10,7 +10,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export GOPATH=$HOME/go
 
 # Go packages
-export PATH="$PATH:/Users/aclapinpepin/go/bin"
+export PATH="/Users/aclapinpepin/go/bin:$PATH"
 
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home"
@@ -22,7 +22,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Python3
 # NOTE: Mamba is overriding the default Python3
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="$PATH:/Users/aclapinpepin/Library/Python/3.11/bin"
+export PATH="/Users/aclapinpepin/Library/Python/3.11/bin:$PATH"
 export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:$PATH"
 
 # LLVM
@@ -35,10 +35,18 @@ if [ -f '/Users/aclapinpepin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/ac
 if [ -f '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/aclapinpepin/google-cloud-sdk/completion.zsh.inc'; fi
 
 # foundry https://github.com/foundry-rs/foundry
-export PATH="$PATH:/Users/aclapinpepin/.foundry/bin"
+export PATH="/Users/aclapinpepin/.foundry/bin:$PATH"
 
 # Solana
 export PATH="/Users/aclapinpepin/.local/share/solana/install/active_release/bin:$PATH"
 
+# avm
+export PATH="/Users/aclapinpepin/.avm/bin:$PATH"
+
 # gpg
 export GPG_TTY=$(tty)
+
+export PATH="/usr/local/Cellar/gnu-tar/1.35/bin:$PATH"
+
+# Solana
+export PATH="/Users/aclapinpepin/code/solana/bin:$PATH"
