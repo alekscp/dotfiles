@@ -1,0 +1,37 @@
+import = ["/Users/aclapinpepin/.config/alacritty/rose-pine-moon.toml"]
+
+[shell]
+program = "/bin/zsh"
+args = ["-l", "-c", "tmux attach || tmux new"]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding = { x = 0, y = 0 }
+dynamic_padding = true
+opacity = 0.95
+title = "alnecultra"
+
+[scrolling]
+history = 10000
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+size = 14.0
+
+[cursor]
+style =  "Block"
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+bindings = [
+{ key = "F", mods = "Alt", chars = "\u001bf" },
+{ key = "B", mods = "Alt", chars = "\u001bb" },
+]
+
+[debug]
+log_level = "error"
