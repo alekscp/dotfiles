@@ -11,5 +11,18 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Fish shell like syntax highlighting for zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Specify a dump file location for compdump
+COMPDUMP="${ZDOTDIR:-$HOME}/.zsh/.zcompdump"
+
+# Add the completion directory to the fpath
+fpath=($HOME/.zsh/completions ${fpath[@]})
+
+# Load and initialize the completion system
+autoload -Uz compinit
+compinit -C
+
+# Load 1Password completions
+eval "$(op completion zsh)"; compdef _op op
+
 # Evoke starship prompt (must be at the end of .zshrc)
 eval "$(starship init zsh)"
