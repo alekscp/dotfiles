@@ -2,8 +2,10 @@
   name = Aleks CP
   email = cryptoacp@protonmail.com
   signingkey = 540C7D708C3C0FB1
+
 [credential]
   helper = cache --timeout=3600
+
 [alias]
   aa = add --all
   b = branch
@@ -30,24 +32,47 @@
   unchange = checkout --
   uncommit = reset --soft HEAD^
   unstage = reset
+
 [core]
   autocrlf = false
   safecrlf = true
   editor = /usr/local/bin/nvim
   excludesfile = ~/.gitignore
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  side-by-side = true
+
+[diff]
+  colorMoved = default
+
+[merge]
+  conflictstyle = diff3
+
 [commit]
   template = ~/.gitmessage
   gpgsign = true
+
 [push]
   default = upstream
   autoSetupRemote = true
+
 [github]
   user = alekscp
+
 [init]
   templatedir = ~/.git_template
   defaultBranch = main
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
   required = true
 	process = git-lfs filter-process
+
+[delta]
+
