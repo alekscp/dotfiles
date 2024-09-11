@@ -29,8 +29,8 @@ hide_when_typing = true
 
 [keyboard]
 bindings = [
-{ key = "F", mods = "Alt", chars = "\u001bf" },
-{ key = "B", mods = "Alt", chars = "\u001bb" },
+  { key = "F", mods = "Alt", chars = "\u001bf" },
+  { key = "B", mods = "Alt", chars = "\u001bb" },
 ]
 
 [debug]
