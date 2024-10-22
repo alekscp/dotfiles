@@ -26,6 +26,9 @@ return {
     end
 
     vim.keymap.set("n", "<C-e>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window" })
-    vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+    vim.keymap.set("n", "<space>a", function() harpoon:list():add() end, { desc = "Add current file to harpoon" })
+
+    vim.keymap.set("n", "<space>p", function() harpoon:list():prev() end)
+    vim.keymap.set("n", "<space>n", function() harpoon:list():next() end)
   end,
 }

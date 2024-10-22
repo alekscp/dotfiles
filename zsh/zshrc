@@ -21,8 +21,5 @@ fpath=($HOME/.zsh/completions ${fpath[@]})
 autoload -Uz compinit
 compinit -C
 
-# Load 1Password completions
-eval "$(op completion zsh)"; compdef _op op
-
 # Evoke starship prompt (must be at the end of .zshrc)
 eval "$(starship init zsh)"

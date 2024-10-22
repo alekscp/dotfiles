@@ -41,7 +41,7 @@ return {
         buffers = {
           mappings = {
             i = {
-              ["<C-d>"] = require("telescope.actions").delete_buffer,
+              ["<C-e>"] = require("telescope.actions").delete_buffer,
             }
           }
         }

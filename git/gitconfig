@@ -47,7 +47,7 @@
   dark = true
   true-color = always
   navigate = true
-  side-by-side = true
+  side-by-side = false
   hyperlink = true
 
 [diff]
