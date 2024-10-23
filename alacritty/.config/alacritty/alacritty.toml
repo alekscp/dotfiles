@@ -1,8 +1,8 @@
+[general]
 import = ["/Users/aclapinpepin/.config/alacritty/rose-pine-moon.toml"]
 
-[shell]
-program = "/bin/zsh"
-args = ["-l", "-c", "tmux attach || tmux new"]
+[terminal]
+shell = { program= "/bin/zsh", args = ["-l", "-c", "tmux attach || tmux new"] }
 
 [env]
 TERM = "xterm-256color"
