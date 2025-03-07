@@ -63,13 +63,13 @@
 [push]
   default = upstream
   autoSetupRemote = true
+  followTags = true
 
 [github]
   user = alekscp
 
 [init]
-  templatedir = ~/.git_template
-  defaultBranch = main
+  defaultBranch = master
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -78,4 +78,3 @@
 	process = git-lfs filter-process
 
 [delta]
-
