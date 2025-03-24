@@ -1,5 +1,5 @@
 zsh/configs/arcx.zsh
 zsh/configs/secret.zsh
 aws/
-aider/
+aider/aider.conf.yml
 .aider*
