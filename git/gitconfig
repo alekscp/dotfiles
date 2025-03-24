@@ -36,7 +36,7 @@
 [core]
   autocrlf = false
   safecrlf = true
-  editor = /usr/local/bin/nvim
+  editor = /opt/homebrew/bin/nvim
   excludesfile = ~/.gitignore
   pager = delta
 

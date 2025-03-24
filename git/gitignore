@@ -10,3 +10,4 @@
 .idea
 .vagrant
 FLOOBITS_README.md
+.aider.*

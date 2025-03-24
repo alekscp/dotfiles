@@ -50,3 +50,6 @@ export PATH="/usr/local/Cellar/gnu-tar/1.35/bin:$PATH"
 
 # Solana
 export PATH="/Users/aclapinpepin/code/solana/bin:$PATH"
+
+# uv
+export PATH="/Users/aclapinpepin/.local/bin:$PATH"
