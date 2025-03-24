@@ -14,7 +14,7 @@ return {
     vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>")
 
     require("nvim-tree").setup {
-      update_cwd = false
+      update_cwd = false,
     }
   end,
 }

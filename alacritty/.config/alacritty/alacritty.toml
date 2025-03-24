@@ -31,6 +31,11 @@ hide_when_typing = true
 bindings = [
   { key = "F", mods = "Alt", chars = "\u001bf" },
   { key = "B", mods = "Alt", chars = "\u001bb" },
+  { key = "T", mods = "Command", action = "None" },
+  { key = "Q", mods = "Alt", chars = "\u001bq" },
+  { key = "X", mods = "Alt", chars = "\u001bx" },
+  { key = "K", mods = "Alt", chars = "\u001bk" },
+  { key = "D", mods = "Alt", chars = "\u001bd" }
 ]
 
 [debug]

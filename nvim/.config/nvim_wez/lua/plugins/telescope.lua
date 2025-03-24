@@ -1,6 +1,6 @@
 return {
-  "nvim-telescope/telescope.nvim", branch = "master",
-  -- or                              , tag = "0.1.x",
+  "nvim-telescope/telescope.nvim", tag = "0.1.6",
+  -- or                              , branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
@@ -41,14 +41,7 @@ return {
         buffers = {
           mappings = {
             i = {
-              ["<M-d>"] = require("telescope.actions").delete_buffer,
-            }
-          }
-        },
-        marks = {
-          mappings = {
-            i = {
-              ["<M-d>"] = require("telescope.actions").delete_mark,
+              ["<C-e>"] = require("telescope.actions").delete_buffer,
             }
           }
         }

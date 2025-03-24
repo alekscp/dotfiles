@@ -15,7 +15,7 @@ vim.opt.spelllang = { "en_us", "fr" }
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-vim.opt.mouse = "a"
+vim.opt.mouse = ""
 vim.opt.guicursor = ""
 
 vim.opt.incsearch = true
@@ -48,18 +48,3 @@ vim.api.nvim_command("au CursorHold,CursorHoldI,FocusGained,BufEnter * checktime
 -- api.nvim_command("autocmd FileType solidity setlocal ai sw=4 sts=2 et")
 -- -- Open all folds on file/buffer open
 -- api.nvim_command("autocmd BufReadPost,FileReadPost * normal zi")
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "nginx",
-  callback = function()
-    vim.opt_local.tabstop = 4
-    vim.opt_local.shiftwidth = 4
-    vim.opt_local.softtabstop = 4
-    vim.opt_local.expandtab = true -- Ensure spaces are used instead of tabs
-  end,
-})
-
--- Do not continue comments with o
-vim.api.nvim_create_autocmd("BufEnter", {
-  command = [[set formatoptions-=ro]]
-})

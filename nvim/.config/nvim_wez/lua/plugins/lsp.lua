@@ -40,7 +40,7 @@ return {
 
     require('mason').setup({})
     require('mason-lspconfig').setup({
-      ensure_installed = {'ts_ls', 'rust_analyzer'},
+      ensure_installed = {'tsserver', 'rust_analyzer'},
       handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
@@ -58,15 +58,6 @@ return {
           local lspconfig = require('lspconfig')
           lspconfig.jinja_lsp.setup({
             filetypes = {'jinja', 'jinja2', 'j2'},
-          })
-        end,
-        yamlls = function()
-          local lspconfig = require('lspconfig')
-          lspconfig.yamlls.setup({
-            filetypes = {'yaml', 'yml'},
-            format = {
-              enable = true,
-            }
           })
         end
       }
