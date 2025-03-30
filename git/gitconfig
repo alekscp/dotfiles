@@ -3,6 +3,9 @@
   email = me@alekscp.com
   signingkey = C4485B61830056F03230D5ED032AADB79A4FE32B
 
+[gpg]
+  program = /opt/homebrew/bin/gpg
+
 [credential]
   helper = cache --timeout=3600
 
