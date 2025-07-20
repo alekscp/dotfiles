@@ -1,3 +1,7 @@
+# Load and initialize the completion system; Must be loaded first!
+autoload -Uz compinit
+compinit -C
+
 for zsh_source in $HOME/.zsh/configs/*.zsh; do
   source $zsh_source
 done
@@ -16,10 +20,6 @@ COMPDUMP="${ZDOTDIR:-$HOME}/.zsh/.zcompdump"
 
 # Add the completion directory to the fpath
 fpath=($HOME/.zsh/completions ${fpath[@]})
-
-# Load and initialize the completion system
-autoload -Uz compinit
-compinit -C
 
 # Evoke starship prompt (must be at the end of .zshrc)
 eval "$(starship init zsh)"
