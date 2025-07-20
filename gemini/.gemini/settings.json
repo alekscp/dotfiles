@@ -3,5 +3,5 @@
   "contextFileName": "AGENTS.md,GEMINI.md",
   "autoAccept": false,
   "selectedAuthType": "gemini-api-key",
-  "preferredEditor": "vim"
+  "preferredEditor": "nvim"
 }
