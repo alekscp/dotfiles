@@ -1,7 +1,8 @@
 {
   "theme": "Default",
-  "contextFileName": "AGENTS.md,GEMINI.md",
+  "contextFileName": "AGENT.md,GEMINI.md",
   "autoAccept": false,
   "selectedAuthType": "gemini-api-key",
-  "preferredEditor": "nvim"
+  "preferredEditor": "nvim",
+  "hideBanner": true
 }

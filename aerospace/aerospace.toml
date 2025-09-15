@@ -226,10 +226,6 @@ run = "move-node-to-workspace N"
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace N"
 
-# [[on-window-detected]]
-# if.app-id = 'com.apple.finder'
-# run = "move-node-to-workspace O"
-
 [[on-window-detected]]
 if.app-id = 'com.tonapps.tonkeeperpro'
 run = "move-node-to-workspace C"
@@ -247,10 +243,6 @@ run = "move-node-to-workspace B"
 ### ###
 
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-run = "move-node-to-workspace B"
-
-[[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'
 run = "move-node-to-workspace B"
 
@@ -258,10 +250,19 @@ run = "move-node-to-workspace B"
 # if.app-id = 'company.thebrowser.Browser'
 # run = "move-node-to-workspace B"
 
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = "layout floating"
+
 ### Guitar Rig ###
 [[on-window-detected]]
-if.workspace = 'G'
-run = "layout floating"
+if.app-id = "com.arobas-music.guitarpro8"
+check-further-callbacks = true
+run = ["move-node-to-workspace G"]
+
+[[on-window-detected]]
+if.workspace = "G"
+run = ["layout floating"]
 ### ###
 
 [[on-window-detected]]

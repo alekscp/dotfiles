@@ -31,9 +31,6 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 # foundry https://github.com/foundry-rs/foundry
 export PATH="/Users/aclapinpepin/.foundry/bin:$PATH"
 
-# Solana
-export PATH="/Users/aclapinpepin/.local/share/solana/install/active_release/bin:$PATH"
-
 # avm
 export PATH="/Users/aclapinpepin/.avm/bin:$PATH"
 
@@ -41,9 +38,6 @@ export PATH="/Users/aclapinpepin/.avm/bin:$PATH"
 export GPG_TTY=$(tty)
 
 export PATH="/usr/local/Cellar/gnu-tar/1.35/bin:$PATH"
-
-# Solana
-export PATH="/Users/aclapinpepin/code/solana/bin:$PATH"
 
 # uv
 export PATH="/Users/aclapinpepin/.local/bin:$PATH"
