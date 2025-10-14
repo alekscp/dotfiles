@@ -219,6 +219,10 @@ if.app-id = 'ru.keepcoder.Telegram'
 run = "move-node-to-workspace S"
 
 [[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
 if.app-id = 'notion.id'
 run = "move-node-to-workspace N"
 
@@ -242,9 +246,9 @@ if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace B"
 ### ###
 
-[[on-window-detected]]
-if.app-id = 'ru.keepcoder.Telegram'
-run = "move-node-to-workspace B"
+# [[on-window-detected]]
+# if.app-id = 'ru.keepcoder.Telegram'
+# run = "move-node-to-workspace B"
 
 # [[on-window-detected]]
 # if.app-id = 'company.thebrowser.Browser'
