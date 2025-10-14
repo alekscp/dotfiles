@@ -1,5 +1,5 @@
 [general]
-import = ["/Users/aclapinpepin/.config/alacritty/rose-pine-moon.toml"]
+import = ["/Users/aclapinpepin/.config/alacritty/catppuccin-macchiato.toml"]
 
 [terminal]
 shell = { program= "/bin/zsh", args = ["-l", "-c", "tmux attach || tmux new"] }
