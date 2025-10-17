@@ -95,5 +95,11 @@ return {
     })
 
     lsp_zero.setup()
+
+    vim.filetype.add({
+      extension = {
+        j2 = "jinja",
+      },
+    })
   end,
 }
