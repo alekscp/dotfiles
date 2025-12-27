@@ -208,7 +208,7 @@ run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'com.operasoftware.Opera'
-run = "move-node-to-workspace S"
+run = "move-node-to-workspace V"
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
@@ -231,8 +231,20 @@ if.app-id = 'md.obsidian'
 run = "move-node-to-workspace N"
 
 [[on-window-detected]]
-if.app-id = 'com.tonapps.tonkeeperpro'
-run = "move-node-to-workspace C"
+if.app-id = 'com.apple.clock'
+run = "move-node-to-workspace 7"
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
+if.app-id = 'ch.protonvpn.mac'
+run = "move-node-to-workspace 3"
+
+# [[on-window-detected]]
+# if.app-id = 'com.tonapps.tonkeeperpro'
+# run = "move-node-to-workspace C"
 
 ### Brave Browser ###
 # [[on-window-detected]]
@@ -246,17 +258,11 @@ if.app-id = 'com.brave.Browser'
 run = "move-node-to-workspace B"
 ### ###
 
-# [[on-window-detected]]
-# if.app-id = 'ru.keepcoder.Telegram'
-# run = "move-node-to-workspace B"
-
-# [[on-window-detected]]
-# if.app-id = 'company.thebrowser.Browser'
-# run = "move-node-to-workspace B"
-
+### Finder ###
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = "layout floating"
+run = ["layout floating", "move-node-to-workspace O"]
+### ###
 
 ### Guitar Rig ###
 [[on-window-detected]]
@@ -265,16 +271,56 @@ check-further-callbacks = true
 run = ["move-node-to-workspace G"]
 
 [[on-window-detected]]
+if.app-id = "com.apple.Preview"
+if.window-title-regex-substring = "mode_caged_charts"
+check-further-callbacks = true
+run = ["move-node-to-workspace G"]
+
+[[on-window-detected]]
 if.workspace = "G"
 run = ["layout floating"]
 ### ###
 
+### VMs ###
 [[on-window-detected]]
 if.app-id = 'com.utmapp.UTM'
 run = "layout floating"
+### ###
 
 ### Books ###
 [[on-window-detected]]
 if.app-id = 'com.apple.iBooksX'
 run = 'layout floating'
+### ###
+
+### DBs ###
+[[on-window-detected]]
+if.app-id = 'org.RedisLabs.RedisInsight-V2'
+check-further-callbacks = true
+run = "move-node-to-workspace 9"
+
+[[on-window-detected]]
+if.app-id = 'org.jkiss.dbeaver.core.product'
+check-further-callbacks = true
+run = "move-node-to-workspace 9"
+
+[[on-window-detected]]
+if.workspace = "9"
+run = ["layout h_accordion"]
+### ###
+
+### APIs Tools ###
+[[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
+check-further-callbacks = true
+run = "move-node-to-workspace 6"
+
+[[on-window-detected]]
+if.app-id = 'com.usebruno.app'
+check-further-callbacks = true
+run = "move-node-to-workspace 6"
+
+[[on-window-detected]]
+if.workspace = "6"
+run = ["layout h_accordion"]
 ### ###
