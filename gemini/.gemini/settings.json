@@ -7,10 +7,11 @@
     "theme": "Default"
   },
   "model": {
-    "name": "gemini-2.5-pro-preview-06-05"
+    "name": "gemini-3-pro-preview"
   },
   "general": {
-    "preferredEditor": "nvim"
+    "preferredEditor": "nvim",
+    "previewFeatures": true
   },
   "context": {
     "fileName": [

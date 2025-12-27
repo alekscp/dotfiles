@@ -11,3 +11,4 @@
 .vagrant
 FLOOBITS_README.md
 .aider.*
+.gemini-clipboard
