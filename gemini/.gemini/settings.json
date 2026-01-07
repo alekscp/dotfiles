@@ -26,7 +26,8 @@
   },
   "security": {
     "auth": {
-      "selectedType": "gemini-api-key"
+      "selectedType": "gemini-api-key",
+      "enforcedType": "gemini-api-key"
     }
   }
 }

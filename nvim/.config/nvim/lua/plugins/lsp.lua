@@ -64,9 +64,11 @@ return {
           local lspconfig = require('lspconfig')
           lspconfig.yamlls.setup({
             filetypes = {'yaml', 'yml'},
-            format = {
-              enable = true,
-            }
+            settings = {
+              yaml = {
+                format = { enable = true },
+              },
+            },
           })
         end
       }

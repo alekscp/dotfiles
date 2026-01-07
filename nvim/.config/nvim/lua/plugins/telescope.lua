@@ -1,6 +1,6 @@
 return {
-  "nvim-telescope/telescope.nvim", branch = "master",
-  -- or                              , tag = "0.1.x",
+  "nvim-telescope/telescope.nvim", tag = "v0.2.0",
+  -- If you need older Neovim (<0.10), pin to an older tag like v0.1.6
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }

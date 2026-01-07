@@ -192,7 +192,11 @@ G = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = "move-node-to-workspace T"
+run = "move-node-to-workspace y"
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace t'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
@@ -240,7 +244,15 @@ run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
 if.app-id = 'ch.protonvpn.mac'
+run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = 'com.electron.dockerdesktop'
+run = "move-node-to-workspace 8"
 
 # [[on-window-detected]]
 # if.app-id = 'com.tonapps.tonkeeperpro'
@@ -261,7 +273,7 @@ run = "move-node-to-workspace B"
 ### Finder ###
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-run = ["layout floating", "move-node-to-workspace O"]
+run = ["move-node-to-workspace O", "layout floating", "fullscreen"]
 ### ###
 
 ### Guitar Rig ###
@@ -284,13 +296,23 @@ run = ["layout floating"]
 ### VMs ###
 [[on-window-detected]]
 if.app-id = 'com.utmapp.UTM'
+check-further-callbacks = true
+run = "move-node-to-workspace R"
+
+[[on-window-detected]]
+if.app-id = 'com.utmapp.UTM'
 run = "layout floating"
 ### ###
 
 ### Books ###
 [[on-window-detected]]
 if.app-id = 'com.apple.iBooksX'
-run = 'layout floating'
+check-further-callbacks = true
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iBooksX'
+run = ["layout floating", "fullscreen"]
 ### ###
 
 ### DBs ###
@@ -306,7 +328,7 @@ run = "move-node-to-workspace 9"
 
 [[on-window-detected]]
 if.workspace = "9"
-run = ["layout h_accordion"]
+run = ["layout accordion horizontal"]
 ### ###
 
 ### APIs Tools ###
@@ -322,5 +344,5 @@ run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
 if.workspace = "6"
-run = ["layout h_accordion"]
+run = ["layout accordion horizontal"]
 ### ###

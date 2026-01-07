@@ -35,7 +35,8 @@ bindings = [
   { key = "Q", mods = "Alt", chars = "\u001bq" },
   { key = "X", mods = "Alt", chars = "\u001bx" },
   { key = "K", mods = "Alt", chars = "\u001bk" },
-  { key = "D", mods = "Alt", chars = "\u001bd" }
+  { key = "D", mods = "Alt", chars = "\u001bd" },
+  # { key = "Return", mods = "Shift", chars = "\n" }
 ]
 
 [debug]

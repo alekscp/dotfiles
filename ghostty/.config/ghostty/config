@@ -1,0 +1,64 @@
+##########
+# Theme
+##########
+theme = Catppuccin Macchiato
+
+##########
+# Shell / command
+##########
+command = /bin/zsh -l -c "tmux attach || tmux new"
+
+##########
+# TERM / environment
+##########
+term = xterm-256color
+# env = TERM=xterm-256color
+
+##########
+# Window
+##########
+title = alnecultra
+
+window-padding-x = 0
+window-padding-y = 0
+window-padding-balance = true
+
+background-opacity = 0.95
+
+##########
+# Font
+##########
+font-family = "JetBrainsMono Nerd Font Mono"
+font-family-bold = "JetBrainsMono Nerd Font Mono"
+font-synthetic-style = "bold"
+font-size = 14
+
+##########
+# Cursor
+##########
+cursor-style = block
+shell-integration-features = no-cursor
+
+##########
+# Mouse
+##########
+mouse-hide-while-typing = true
+
+##########
+# Scrolling
+##########
+scrollback-limit = 16777216
+
+##########
+# Keyboard
+##########
+macos-option-as-alt = true
+
+keybind = alt+f=esc:f
+keybind = alt+b=esc:b
+keybind = alt+q=esc:q
+keybind = alt+x=esc:x
+keybind = alt+k=esc:k
+keybind = alt+d=esc:d
+keybind = cmd+t=ignore
+keybind = shift+enter=text:\x1b\r
