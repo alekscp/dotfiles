@@ -1,0 +1,56 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "openai": {
+      "options": {
+        "reasoningEffort": "xhigh",
+        "reasoningSummary": "auto",
+        "textVerbosity": "low",
+        "include": [
+          "reasoning.encrypted_content"
+        ]
+      }
+    },
+    "openrouter": {
+      "models": {
+        "mistralai/devstral-2512": {
+          "name": "Devstral 2512 (OpenRouter)",
+          "limit": {
+            "context": 32000,
+            "output": 8192
+          },
+          "modalities": {
+            "input": [
+              "text"
+            ],
+            "output": [
+              "text"
+            ]
+          }
+        }
+      },
+      "options": {
+        "apiKey": "{env:OPENCODE_OPENROUTER_API_KEY}",
+        "baseURL": "https://openrouter.ai/api/v1"
+      }
+    },
+    "deepseek": {
+      "models": {},
+      "options": {
+        "baseURL": "https://api.deepseek.com",
+        "apiKey": "{env:OPENCODE_DEEPSEEK_API_KEY}"
+      }
+    }
+  },
+  "agent": {
+    "rust-teacher": {
+      "description": "An AI agent specialized in teaching Rust programming language concepts and best practices.",
+      "model": "openrouter/arcee-ai/trinity-large-preview:free",
+      "prompt": "You are Rust Teacher, an AI agent specialized in teaching Rust programming language concepts and best practices. Your goal is to help users understand Rust by providing clear explanations, code examples, and answering their questions. Always ensure your responses are accurate and beginner-friendly.",
+      "tools": {
+        "write": false,
+        "edit": false,
+      },
+    },
+  }
+}

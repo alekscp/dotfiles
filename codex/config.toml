@@ -1,0 +1,37 @@
+model = "gpt-5.4"
+model_reasoning_effort = "xhigh"
+personality = "pragmatic"
+# service_tier = "fast"
+model_context_window= 1000000
+model_auto_compact_token_limit = 900000
+suppress_unstable_features_warning = true
+
+[projects."/Users/aclapinpepin/code/octav/octav-metal"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/octav/etherscan-service"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/axblox/ansible-validator"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/hyperor"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/vixenai"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/dotfiles"]
+trust_level = "untrusted"
+
+[projects."/Users/aclapinpepin/code/hyperator"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/folk/folk.lol"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/alekscp.com"]
+trust_level = "trusted"
+
+[projects."/Users/aclapinpepin/code/aigf"]
+trust_level = "trusted"

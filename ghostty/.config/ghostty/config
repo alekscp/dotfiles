@@ -62,3 +62,5 @@ keybind = alt+k=esc:k
 keybind = alt+d=esc:d
 keybind = cmd+t=ignore
 keybind = shift+enter=text:\x1b\r
+
+confirm-close-surface = false
