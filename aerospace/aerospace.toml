@@ -142,9 +142,7 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
-alt-shift-e = 'move-node-to-workspace E'
 alt-shift-g = 'move-node-to-workspace G'
-alt-shift-i = 'move-node-to-workspace I'
 alt-shift-m = 'move-node-to-workspace M'
 alt-shift-n = 'move-node-to-workspace N'
 alt-shift-o = 'move-node-to-workspace O'
@@ -153,7 +151,6 @@ alt-shift-q = 'move-node-to-workspace Q'
 alt-shift-r = 'move-node-to-workspace R'
 alt-shift-s = 'move-node-to-workspace S'
 alt-shift-t = 'move-node-to-workspace T'
-alt-shift-u = 'move-node-to-workspace U'
 alt-shift-v = 'move-node-to-workspace V'
 alt-shift-w = 'move-node-to-workspace W'
 alt-shift-x = 'move-node-to-workspace X'
@@ -189,6 +186,7 @@ alt-shift-l = ['join-with right', 'mode main']
 [workspace-to-monitor-force-assignment]
 T = 'secondary'
 G = 'secondary'
+P = 'secondary'
 
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
@@ -196,7 +194,7 @@ run = "move-node-to-workspace y"
 
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace t'
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
@@ -253,6 +251,10 @@ run = "move-node-to-workspace 3"
 [[on-window-detected]]
 if.app-id = 'com.electron.dockerdesktop'
 run = "move-node-to-workspace 8"
+
+[[on-window-detected]]
+if.app-id = 'com.libretro.dist.RetroArch'
+run = ["move-node-to-workspace Y", "layout floating"]
 
 # [[on-window-detected]]
 # if.app-id = 'com.tonapps.tonkeeperpro'
