@@ -8,6 +8,10 @@ vim.keymap.set("i", "“", "<Plug>(copilot-previous)")
 
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>")
+vim.keymap.set("n", "<space>u", function()
+  vim.cmd.packadd("nvim.undotree")
+  vim.cmd.Undotree()
+end)
 
 -- Move text up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")

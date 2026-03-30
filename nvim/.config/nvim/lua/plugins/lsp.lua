@@ -5,14 +5,11 @@ return {
     {"williamboman/mason-lspconfig.nvim"},
 
     {"hrsh7th/nvim-cmp"},
-    {"hrsh7th/cmp-buffer"},
     {"hrsh7th/cmp-path"},
-    {"saadparwaiz1/cmp_luasnip"},
     {"hrsh7th/cmp-nvim-lsp"},
     {"hrsh7th/cmp-nvim-lua"},
 
     {"L3MON4D3/LuaSnip"},
-    {"rafamadriz/friendly-snippets"},
   },
   config = function()
     local cmp = require('cmp')
@@ -48,51 +45,6 @@ return {
 
     vim.lsp.config('*', {
       capabilities = lsp_capabilities,
-    })
-
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, 'lua/?.lua')
-    table.insert(runtime_path, 'lua/?/init.lua')
-
-    vim.lsp.config('lua_ls', {
-      settings = {
-        Lua = {
-          telemetry = {enable = false},
-          runtime = {
-            version = 'LuaJIT',
-            path = runtime_path,
-          },
-          diagnostics = {
-            globals = {'vim'},
-          },
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.fn.expand('$VIMRUNTIME/lua'),
-              vim.fn.stdpath('config') .. '/lua',
-            },
-          },
-        },
-      },
-    })
-
-    vim.lsp.config('ansiblels', {
-      filetypes = {'yaml', 'yaml.ansible', 'ansible'},
-      root_markers = {
-        {'ansible.cfg', 'inventories', 'roles', 'playbooks'},
-      },
-    })
-
-    vim.lsp.config('jinja_lsp', {
-      filetypes = {'jinja', 'jinja2', 'j2'},
-    })
-
-    vim.lsp.config('yamlls', {
-      settings = {
-        yaml = {
-          format = {enable = true},
-        },
-      },
     })
 
     require('mason').setup({})
