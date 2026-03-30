@@ -19,7 +19,7 @@ return {
     })
 
     -- Set the colorscheme
-    vim.cmd.colorscheme("catppuccin")
+    vim.cmd.colorscheme("catppuccin-nvim")
 
     -- Customize the MatchParen highlight group to make it more visible
     vim.api.nvim_set_hl(0, "MatchParen", { fg = "#e78284", bg = "#414559", bold = true, underline = true })
