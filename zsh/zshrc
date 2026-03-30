@@ -1,6 +1,20 @@
-# Load and initialize the completion system; Must be loaded first!
+# Configure and initialize the completion system.
+COMPDUMP="${ZDOTDIR:-$HOME}/.zsh/.zcompdump"
+
+if [ -d /opt/homebrew/share/zsh/site-functions ]; then
+  fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+fi
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*'
+zstyle ':completion:*' rehash true
+
 autoload -Uz compinit
-compinit -C
+compinit -d "$COMPDUMP"
+zmodload zsh/complist
+
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 for zsh_source in $HOME/.zsh/configs/*.zsh; do
   source $zsh_source
@@ -14,12 +28,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Fish shell like syntax highlighting for zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Specify a dump file location for compdump
-COMPDUMP="${ZDOTDIR:-$HOME}/.zsh/.zcompdump"
-
-# Add the completion directory to the fpath
-fpath=($HOME/.zsh/completions ${fpath[@]})
 
 # Evoke starship prompt (must be at the end of .zshrc)
 eval "$(starship init zsh)"

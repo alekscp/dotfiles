@@ -1,46 +1,56 @@
-# Add homebrew binaries
-export PATH="/usr/local/sbin:$PATH"
-
-export PATH="$HOME/bin:$PATH:$MYSQL"
+typeset -U path PATH
+typeset -a path_prefixes
+typeset -a clean_path
 
 # Change XDG config directory
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Go
-export GOPATH=$HOME/go
-
-# Go packages
-export PATH="/Users/aclapinpepin/go/bin:$PATH"
+export GOPATH="$HOME/go"
 
 # Java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home"
-export PATH="$ES_HOME/bin:$JAVA_HOME/bin:$PATH"
 
-# Rust && Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
+for dir in \
+  "/usr/local/sbin" \
+  "$HOME/bin" \
+  "$GOPATH/bin" \
+  "$JAVA_HOME/bin" \
+  "$ES_HOME/bin" \
+  "$HOME/.cargo/bin" \
+  "$HOME/Library/Python/3.11/bin" \
+  "/Library/Frameworks/Python.framework/Versions/3.11/bin" \
+  "/opt/homebrew/opt/llvm/bin" \
+  "/usr/local/opt/llvm/bin" \
+  "$HOME/.foundry/bin" \
+  "$HOME/.avm/bin" \
+  "/opt/homebrew/opt/gnu-tar/libexec/gnubin" \
+  "/usr/local/opt/gnu-tar/libexec/gnubin" \
+  "$HOME/.local/bin"
+do
+  if [ -n "$dir" ] && [ -d "$dir" ]; then
+    path_prefixes+=("$dir")
+  fi
+done
 
-# Python3
-# NOTE: Mamba is overriding the default Python3
-# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/Users/aclapinpepin/Library/Python/3.11/bin:$PATH"
-export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:$PATH"
+path=($path_prefixes $path)
 
-# LLVM
-export PATH="/usr/local/opt/llvm/bin:$PATH"
+for dir in $path; do
+  if [ -n "$dir" ] && [ -d "$dir" ]; then
+    clean_path+=("$dir")
+  fi
+done
 
-# foundry https://github.com/foundry-rs/foundry
-export PATH="/Users/aclapinpepin/.foundry/bin:$PATH"
+path=($clean_path)
 
-# avm
-export PATH="/Users/aclapinpepin/.avm/bin:$PATH"
+if [ -n "$MYSQL" ] && [ -d "$MYSQL" ]; then
+  path+=("$MYSQL")
+fi
+
+unset dir path_prefixes clean_path
 
 # gpg
 export GPG_TTY=$(tty)
-
-export PATH="/usr/local/Cellar/gnu-tar/1.35/bin:$PATH"
-
-# uv
-export PATH="/Users/aclapinpepin/.local/bin:$PATH"
 
 # Google Cloud SDK
 export CLOUDSDK_PYTHON="/Users/aclapinpepin/.local/share/uv/python/cpython-3.12.9-macos-aarch64-none/bin/python3.12"
