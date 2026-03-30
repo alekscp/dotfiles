@@ -38,7 +38,9 @@ vim.opt.scrolloff = 8
 vim.opt.termguicolors = true
 vim.opt.shell = "/bin/bash" -- Performance boost
 
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "popup", "noselect" }
+vim.opt.pumborder = "rounded"
+vim.opt.winborder = "rounded"
 
 -- automatically rebalance windows on vim resize
 vim.api.nvim_command("autocmd VimResized * wincmd =")
