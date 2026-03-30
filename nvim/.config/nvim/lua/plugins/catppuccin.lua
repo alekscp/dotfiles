@@ -10,6 +10,18 @@ return {
       float = {
         transparent = true,
       },
+      custom_highlights = function(colors)
+        return {
+          NormalFloat = { bg = colors.base },
+          FloatBorder = { bg = colors.base, fg = colors.surface1 },
+          FloatTitle = { bg = colors.base, fg = colors.blue },
+          Pmenu = { bg = colors.base, fg = colors.text },
+          PmenuBorder = { bg = colors.base, fg = colors.surface1 },
+          PmenuSel = { bg = colors.surface0, fg = colors.text, bold = true },
+          PmenuSbar = { bg = colors.mantle },
+          PmenuThumb = { bg = colors.surface1 },
+        }
+      end,
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },

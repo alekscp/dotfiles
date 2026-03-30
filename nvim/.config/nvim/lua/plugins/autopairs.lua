@@ -29,20 +29,6 @@ return {
           highlight_grey = "LineNr",
         },
       })
-
-      local cmp = require('cmp')
-      if not cmp then
-        print("Error: cmp not found")
-        return
-      end
-
-      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-      if not cmp_autopairs then
-        print("Error: nvim-autopairs.completion.cmp not found")
-        return
-      end
-
-      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end
   },
   {

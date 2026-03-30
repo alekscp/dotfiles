@@ -3,19 +3,34 @@ return {
   dependencies = {
     {"williamboman/mason.nvim"},
     {"williamboman/mason-lspconfig.nvim"},
-
-    {"hrsh7th/nvim-cmp"},
-    {"hrsh7th/cmp-path"},
-    {"hrsh7th/cmp-nvim-lsp"},
-    {"hrsh7th/cmp-nvim-lua"},
-
-    {"L3MON4D3/LuaSnip"},
   },
   config = function()
-    local cmp = require('cmp')
-    local cmp_select = {behavior = cmp.SelectBehavior.Select}
-    local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local float_opts = {border = 'rounded'}
+
+    local all_printable_chars = {}
+    for char_code = 32, 126 do
+      table.insert(all_printable_chars, string.char(char_code))
+    end
+
+    local function completion_select(key)
+      return function()
+        if vim.fn.pumvisible() == 1 then
+          return key
+        end
+
+        return '<C-x><C-o>' .. key
+      end
+    end
+
+    local function completion_page(key, fallback)
+      return function()
+        if vim.fn.pumvisible() == 1 then
+          return key
+        end
+
+        return fallback
+      end
+    end
 
     vim.diagnostic.config({
       severity_sort = true,
@@ -28,7 +43,27 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('alekscp-lsp-attach', {clear = true}),
       callback = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
         local opts = {buffer = event.buf, remap = false}
+        local expr_opts = {buffer = event.buf, expr = true, remap = false, silent = true}
+
+        if client and client:supports_method('textDocument/completion') then
+          client.server_capabilities.completionProvider = client.server_capabilities.completionProvider or {}
+          client.server_capabilities.completionProvider.triggerCharacters = all_printable_chars
+
+          vim.lsp.completion.enable(true, client.id, event.buf, {autotrigger = true})
+
+          vim.keymap.set('i', '<C-Space>', function()
+            vim.lsp.completion.get()
+          end, opts)
+          vim.keymap.set('i', '<C-@>', function()
+            vim.lsp.completion.get()
+          end, opts)
+          vim.keymap.set('i', '<C-p>', completion_select('<C-p>'), expr_opts)
+          vim.keymap.set('i', '<C-n>', completion_select('<C-n>'), expr_opts)
+          vim.keymap.set('i', '<C-u>', completion_page('<PageUp>', '<C-u>'), expr_opts)
+          vim.keymap.set('i', '<C-d>', completion_page('<PageDown>', '<C-d>'), expr_opts)
+        end
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
@@ -52,10 +87,6 @@ return {
       },
     })
 
-    vim.lsp.config('*', {
-      capabilities = lsp_capabilities,
-    })
-
     require('mason').setup({})
     require('mason-lspconfig').setup({
       ensure_installed = {'lua_ls', 'ts_ls', 'rust_analyzer'},
@@ -69,45 +100,6 @@ return {
       'ansiblels',
       'jinja_lsp',
       'yamlls',
-    })
-
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          require('luasnip').lsp_expand(args.body)
-        end,
-      },
-      sources = {
-        {name = 'path'},
-        {name = 'nvim_lsp'},
-        {name = 'nvim_lua'},
-      },
-      formatting = {
-        fields = {'abbr', 'menu', 'kind'},
-        format = function(entry, item)
-          if entry.source.name == 'nvim_lsp' then
-            item.menu = '[LSP]'
-          elseif entry.source.name == 'nvim_lua' then
-            item.menu = '[nvim]'
-          else
-            item.menu = string.format('[%s]', entry.source.name)
-          end
-
-          return item
-        end,
-      },
-      mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-        -- disable completion with tab
-        -- this helps with copilot setup
-        ["<Tab>"] = nil,
-        ["<S-Tab>"] = nil
-      }),
     })
   end,
 }
