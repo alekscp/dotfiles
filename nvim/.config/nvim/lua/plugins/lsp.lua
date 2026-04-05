@@ -1,11 +1,6 @@
 return function()
   local float_opts = { border = 'rounded' }
 
-  local all_printable_chars = {}
-  for char_code = 32, 126 do
-    table.insert(all_printable_chars, string.char(char_code))
-  end
-
   local function completion_select(key)
     return function()
       if vim.fn.pumvisible() == 1 then
@@ -42,17 +37,17 @@ return function()
       local expr_opts = { buffer = event.buf, expr = true, remap = false, silent = true }
 
       if client and client:supports_method('textDocument/completion') then
-        client.server_capabilities.completionProvider = client.server_capabilities.completionProvider or {}
-        client.server_capabilities.completionProvider.triggerCharacters = all_printable_chars
+        local complete = vim.api.nvim_get_option_value('complete', { buf = event.buf })
+        local complete_items = vim.split(complete, ',', { plain = true })
 
-        vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+        if not vim.tbl_contains(complete_items, 'o') then
+          table.insert(complete_items, 'o')
+          vim.api.nvim_set_option_value('complete', table.concat(complete_items, ','), { buf = event.buf })
+        end
 
-        vim.keymap.set('i', '<C-Space>', function()
-          vim.lsp.completion.get()
-        end, opts)
-        vim.keymap.set('i', '<C-@>', function()
-          vim.lsp.completion.get()
-        end, opts)
+        vim.api.nvim_set_option_value('autocomplete', true, { buf = event.buf })
+        vim.lsp.completion.enable(true, client.id, event.buf)
+
         vim.keymap.set('i', '<C-p>', completion_select('<C-p>'), expr_opts)
         vim.keymap.set('i', '<C-n>', completion_select('<C-n>'), expr_opts)
         vim.keymap.set('i', '<C-u>', completion_page('<PageUp>', '<C-u>'), expr_opts)

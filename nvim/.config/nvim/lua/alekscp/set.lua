@@ -39,7 +39,10 @@ vim.opt.termguicolors = true
 vim.opt.shell = "/bin/bash" -- Performance boost
 
 vim.opt.completeopt = { "menu", "menuone", "popup", "noselect" }
+vim.opt.autocompletedelay = 120
 vim.opt.pumborder = "rounded"
+vim.opt.pumheight = 12
+vim.opt.pummaxwidth = 50
 vim.opt.winborder = "rounded"
 
 -- automatically rebalance windows on vim resize
