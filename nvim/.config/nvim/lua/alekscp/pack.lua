@@ -2,6 +2,25 @@ local gh = function(repo)
   return "https://github.com/" .. repo
 end
 
+local pack_plugin_names = function()
+  local names = vim.iter(vim.pack.get())
+    :map(function(plugin)
+      return plugin.spec.name
+    end)
+    :totable()
+
+  table.sort(names)
+  return names
+end
+
+local complete_pack_plugin_names = function(arg_lead)
+  return vim.iter(pack_plugin_names())
+    :filter(function(name)
+      return arg_lead == "" or vim.startswith(name, arg_lead)
+    end)
+    :totable()
+end
+
 local pack_group = vim.api.nvim_create_augroup("alekscp-pack", { clear = true })
 
 vim.api.nvim_create_autocmd("PackChanged", {
@@ -37,8 +56,14 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 vim.api.nvim_create_user_command("PackUpdate", function(opts)
-  vim.pack.update(nil, { force = opts.bang })
-end, { bang = true, desc = "Update vim.pack plugins" })
+  local names = #opts.fargs > 0 and opts.fargs or nil
+  vim.pack.update(names, { force = opts.bang })
+end, {
+  bang = true,
+  complete = complete_pack_plugin_names,
+  desc = "Update vim.pack plugins",
+  nargs = "*",
+})
 
 vim.api.nvim_create_user_command("PackStatus", function()
   vim.pack.update(nil, { offline = true })
