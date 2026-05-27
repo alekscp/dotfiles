@@ -61,6 +61,6 @@ keybind = alt+x=esc:x
 keybind = alt+k=esc:k
 keybind = alt+d=esc:d
 keybind = cmd+t=ignore
-keybind = shift+enter=text:\x1b\r
+keybind = shift+enter=text:\x1b[13;2u
 
 confirm-close-surface = false

@@ -1,16 +1,13 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
+# Config version for compatibility and deprecations
+config-version = 2
+
 # It's not necessary to copy all keys to your config.
 # If the key is missing in your config, "default-config.toml" will serve as a fallback
 
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
-
 # You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = []
 
@@ -43,7 +40,13 @@ key-mapping.preset = 'qwerty'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = "move-mouse window-lazy-center"
+on-focus-changed = ['move-mouse window-lazy-center']
+
+# Keep the workspaces this config actively uses available even when empty.
+persistent-workspaces = [
+  "1", "3", "4", "5", "6", "7", "8", "9",
+  "A", "B", "F", "G", "M", "N", "O", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z",
+]
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -189,10 +192,6 @@ G = 'secondary'
 P = 'secondary'
 
 [[on-window-detected]]
-if.app-id = 'org.alacritty'
-run = "move-node-to-workspace y"
-
-[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace T'
 
@@ -205,24 +204,8 @@ if.app-id = 'com.spotify.client'
 run  = "move-node-to-workspace M"
 
 [[on-window-detected]]
-if.app-id = 'org.whispersystems.signal-desktop'
-run = "move-node-to-workspace S"
-
-[[on-window-detected]]
 if.app-id = 'com.operasoftware.Opera'
 run = "move-node-to-workspace V"
-
-[[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
-run = "move-node-to-workspace S"
-
-[[on-window-detected]]
-if.app-id = 'ru.keepcoder.Telegram'
-run = "move-node-to-workspace S"
-
-[[on-window-detected]]
-if.app-id = 'net.whatsapp.WhatsApp'
-run = "move-node-to-workspace S"
 
 [[on-window-detected]]
 if.app-id = 'notion.id'
@@ -260,6 +243,32 @@ run = ["move-node-to-workspace Y", "layout floating"]
 # if.app-id = 'com.tonapps.tonkeeperpro'
 # run = "move-node-to-workspace C"
 
+### Chat apps ###
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+check-further-callbacks = true
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+check-further-callbacks = true
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'ru.keepcoder.Telegram'
+check-further-callbacks = true
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+check-further-callbacks = true
+run = "move-node-to-workspace S"
+
+[[on-window-detected]]
+if.workspace = "S"
+run = "layout h_accordion"
+### ###
+
 ### Brave Browser ###
 # [[on-window-detected]]
 # if.app-id = 'com.brave.Browser'
@@ -269,7 +278,12 @@ run = ["move-node-to-workspace Y", "layout floating"]
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
+check-further-callbacks = true
 run = "move-node-to-workspace B"
+
+[[on-window-detected]]
+if.workspace = "B"
+run = "layout h_accordion"
 ### ###
 
 ### Finder ###
@@ -330,7 +344,7 @@ run = "move-node-to-workspace 9"
 
 [[on-window-detected]]
 if.workspace = "9"
-run = ["layout accordion horizontal"]
+run = "layout h_accordion"
 ### ###
 
 ### APIs Tools ###
@@ -346,5 +360,5 @@ run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
 if.workspace = "6"
-run = ["layout accordion horizontal"]
+run = "layout h_accordion"
 ### ###
