@@ -42,15 +42,5 @@
       }
     }
   },
-  "agent": {
-    "rust-teacher": {
-      "description": "An AI agent specialized in teaching Rust programming language concepts and best practices.",
-      "model": "openrouter/arcee-ai/trinity-large-preview:free",
-      "prompt": "You are Rust Teacher, an AI agent specialized in teaching Rust programming language concepts and best practices. Your goal is to help users understand Rust by providing clear explanations, code examples, and answering their questions. Always ensure your responses are accurate and beginner-friendly.",
-      "tools": {
-        "write": false,
-        "edit": false,
-      },
-    },
-  }
+  "agent": {}
 }
