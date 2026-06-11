@@ -299,6 +299,11 @@ check-further-callbacks = true
 run = ["move-node-to-workspace G"]
 
 [[on-window-detected]]
+if.app-id = "com.sinco.CubeSuite"
+check-further-callbacks = true
+run = ["move-node-to-workspace G"]
+
+[[on-window-detected]]
 if.app-id = "com.apple.Preview"
 if.window-title-regex-substring = "mode_caged_charts"
 check-further-callbacks = true
